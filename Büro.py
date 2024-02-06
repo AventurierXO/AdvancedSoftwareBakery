@@ -19,8 +19,44 @@ class Chef(Angestellte):
     def prüft_Lohn(self):
         return self.__lohn
 
-    def ändert_Lohn(self, lohnänderung):
-        self.__lohn = lohnänderung
+    def ändert_lohn(self, mitarbeiter, lohnänderung):
+        print(f"Der bisherige Lohn beträgt {mitarbeiter.gibt_Lohn_an()} €.")
+        if lohnänderung < 0:
+            print(f"Der Lohn kann nicht kleiner als 0 sein.")
+        else:
+            mitarbeiter.__lohn = lohnänderung
+            print(f"Der Lohn wurde auf {lohnänderung} € geändert.")
+
+    def Mitarbeiter_einstellen(self, name, position, lohn):
+        mitarbeiter = position(name, lohn)
+        print(f"Mitarbeiter/in {name} wurde als {mitarbeiter} angelegt.")
+
+    def check_Lager(self):
+        lager = Lager.testbestand.prüft_Bestand()
+        return lager
+
+    def bestellt_Zutaten(self):
+        lager = self.check_Lager()
+        bestellung = self.Bestellung_erstellen(lager)
+        if bestellung != []:
+            rechnung = Lieferant.testlieferant.erfüllt_Lieferung(bestellung)
+            self.bezahlt_rechnung(rechnung)
+
+    def Bestellung_erstellen(self, lager):
+        bestellung = []
+        zutaten = ("Mehl", "Zucker", "Milch", "Eier", "Glasur", "Hefe", "Streusel")
+        for ware in zutaten:
+            if lager[ware] < 50:
+                bestellung.append(ware)
+        if bestellung == []:
+            print(f"Im Moment müssen keine Zutaten nachbestellt werden.")
+        else:
+            print(f"Der Chef hat eine Bestellung für folgende Waren erstellt: {bestellung}")
+        return bestellung
+
+    def bezahlt_rechnung(self, rechnung):
+        print(f"Es werden {rechnung} € vom Chef and das Lieferunternehmen überwiesen.")
+
 
 class Verkäufer_in(Angestellte):
     def geld_zählen(self):
@@ -44,7 +80,7 @@ class Verkäufer_in(Angestellte):
         for ware in einkauf:
             sum += ware[1] * preisliste[ware[0]]
             rechnung = format(sum, ".2f")
-        print(f"Der Einkauf kostet {rechnung} €.")
+        print(f"Der Preis für den Einkauf beträgt {rechnung} €.")
         return rechnung
 
     def kassiere_Geld_ein(self, rechnung, kunde):
@@ -104,10 +140,18 @@ class Bäcker_in(Angestellte):
             fertige_bestellung.update({f"{teilbestellung[0]}": teilbestellung[1]})
         # bringt fertige Bestellung ins Lager bis sie abgeholt wird
 
-    def prüft_Lager(self, zu_prüfende_Waren):
-        # Zutaten oder Backwaren im Lager
-        pass
+    def ermittelt_nachzufüllende_backstücke(self):
+        backstücke = ("Weizensemmel", "Kürbiskernbrötchen", "Roggenmischbrot", "Vollkornbrot", \
+                      "Dinkelbrot", "Croissant", "Streuselkuchen", "Bienenstich", "Pfannkuchen")
+        aufzufüllende_backstücke = []
+        for backwerk in backstücke:
+            if Lager.lagerbestand[backwerk] < 50:
+                aufzufüllende_backstücke.append(backwerk)
+        return aufzufüllende_backstücke
+    def backt(self):
+        aufzufüllende_backstücke = self.ermittelt_nachzufüllende_backstücke()
 
 
+testchef = Chef("Jana", 4000)
 testverkäufer = Verkäufer_in("Alexander", 2000)
 testbäcker = Bäcker_in("Linda", 3000)
