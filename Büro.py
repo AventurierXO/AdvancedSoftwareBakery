@@ -1,6 +1,7 @@
 #Domain Büro
 
-import Auslage, Auslage, Lager, Lieferant, Verkaufsraum, Backstube
+import Auslage, Lager, Lieferant, Verkaufsraum, Backstube
+import random
 
 class Angestellte:
     def __init__(self, name, lohn):
@@ -44,7 +45,7 @@ class Chef(Angestellte):
 
     def Bestellung_erstellen(self, lager):
         bestellung = []
-        zutaten = ("Mehl", "Zucker", "Milch", "Eier", "Glasur", "Hefe", "Streusel")
+        zutaten = ("Mehl", "Zucker", "Milch", "Eier", "Hefe", "Wasser", "Butter")
         for ware in zutaten:
             if lager[ware] < 50:
                 bestellung.append(ware)
@@ -76,26 +77,32 @@ class Verkäufer_in(Angestellte):
 
     def erstelle_Rechnung(self, einkauf):
         preisliste = Auslage.preisliste.prüf_Preisliste()
-        sum = 0
+        rechnung = 0
         for ware in einkauf:
-            sum += ware[1] * preisliste[ware[0]]
-            rechnung = format(sum, ".2f")
-        print(f"Der Preis für den Einkauf beträgt {rechnung} €.")
+            rechnung += ware[1] * preisliste[ware[0]]
         return rechnung
 
     def kassiere_Geld_ein(self, rechnung, kunde):
-        print(f"Das macht dann {rechnung} €, bitte.")
         eingenommenes_geld = kunde.bezahlen(rechnung)
         return eingenommenes_geld
 
-    def verkaufe_Waren(self, auslage, kasse, kunde):
+    def verkaufe_Waren(self, auslage, kaffeemaschine, kasse, kunde):
         # nehme Wünsche des Kunden auf
-        wunschwaren = kunde.kauft_Backwaren(auslage)
-        einkauf = auslage.entnehme_Backwerk(wunschwaren)
-        rechnung = self.erstelle_Rechnung(einkauf)
+        back = random.randint(0, 1)
+        getränk = random.randint(0, 1)
+        zu_bezahlen = 0
+        if back == 1 or getränk == 0:
+            wunschbackwaren = kunde.kauft_Backwaren(auslage)
+            fertige_wunschbackwaren = auslage.entnehme_Backwerk(wunschbackwaren)
+            zu_bezahlen += self.erstelle_Rechnung(fertige_wunschbackwaren)
+        if getränk == 1:
+            wunschgetränke = kunde.kauft_Heißgetränk(kaffeemaschine)
+            fertige_wunschgetränke = kaffeemaschine.macht_Getränk(wunschgetränke)
+            zu_bezahlen += self.erstelle_Rechnung(fertige_wunschgetränke)
+        rechnung = format(zu_bezahlen, ".2f")
+        print(f"Der Preis für den Einkauf beträgt {rechnung} €.")
         eingenommenes_geld = self.kassiere_Geld_ein(rechnung, kunde)
         kasse.geld_einzahlen(eingenommenes_geld)
-        print(f"Vielen Dank für den Einkauf. Ich wünsche einen schönen Tag.")
 
     def gibt_Bestellung_weiter(self, bestellung, bäcker):
         bäcker.nimmt_Bestellung_an(bestellung)
@@ -105,24 +112,15 @@ class Verkäufer_in(Angestellte):
         lieferung = bäcker.liefert_Backstücke()
         return lieferung
 
-
     def Backwaren_nachbestellen(self, auslage, bäcker, lagerbestand):
-        check_backwaren = auslage.erfasst_fehlende_Backwaren()
-        if check_backwaren != []:
-            geholte_backwaren = bäcker.liefert_Backstücke(check_backwaren, lagerbestand)
+        fehlende_backwaren = auslage.erfasst_fehlende_Backwaren()
+        if fehlende_backwaren != []:
+            geholte_backwaren = bäcker.liefert_Backstücke(fehlende_backwaren, lagerbestand)
             auslage.fülle_Bestand_nach(geholte_backwaren)
         else:
-            print(f"Es sind noch Backstücke von jeder Sorte vorhanden.")
+            print(f"Es sind noch genug Backstücke von jeder Sorte vorhanden.")
 
 class Bäcker_in(Angestellte):
-
-    def holt_Zutaten(self):
-        # holt benötigte Zutaten aus dem Lager, sofern diese vorhanden sind
-        pass
-
-    def backen(self, backwerk):
-        # backt ein bestimmtes Backwerk
-        pass
 
     def liefert_Backstücke(self, anforderung,lagerbestand):
         geholte_backwaren = lagerbestand.wird_aus_dem_Lager_genommen(anforderung)
@@ -134,10 +132,11 @@ class Bäcker_in(Angestellte):
         self.bearbeitet_Bestellung(bestellung)
 
     def bearbeitet_Bestellung(self, bestellung):
-        fertige_bestellung = {}
+        fertige_bestellung = []
         for teilbestellung in bestellung:
             self.backen(teilbestellung)
             fertige_bestellung.update({f"{teilbestellung[0]}": teilbestellung[1]})
+
         # bringt fertige Bestellung ins Lager bis sie abgeholt wird
 
     def ermittelt_nachzufüllende_backstücke(self):
@@ -148,9 +147,36 @@ class Bäcker_in(Angestellte):
             if Lager.lagerbestand[backwerk] < 50:
                 aufzufüllende_backstücke.append(backwerk)
         return aufzufüllende_backstücke
-    def backt(self):
-        aufzufüllende_backstücke = self.ermittelt_nachzufüllende_backstücke()
 
+    def produziere_Backstück(self, backstücke):
+        fertig_gebacken = []
+        rezepte = Backstube.rezepte.schaut_Rezepte_an()
+        for teil in backstücke:
+            zutatenliste = self.holt_Rezept(teil, rezepte)
+            self.holt_Zutaten(zutatenliste)
+            fertig_gebacken.append(teil)
+        return fertig_gebacken
+
+    def holt_Rezept(self, backstück, rezepte):
+        return rezepte[backstück]
+
+    def holt_Zutaten(self, zutatenliste):
+        for zutat in zutatenliste:
+            Lager.testbestand.wird_aus_dem_Lager_genommen([zutat[0]], anzahl = zutat[1])
+        print(f"Alle Zutaten wurden nun aus dem Lager genommen.")
+
+    def backt(self, bestellung = []):
+        if bestellung == []:
+            aufzufüllende_backstücke = self.ermittelt_nachzufüllende_backstücke()
+        else:
+            aufzufüllende_backstücke = bestellung
+        if aufzufüllende_backstücke != []:
+            print(f"Folgende Backstücke müssen aufgefüllt werden: {aufzufüllende_backstücke}")
+            neue_backstücke = self.produziere_Backstück(aufzufüllende_backstücke)
+            Lager.testbestand.wird_gelagert(neue_backstücke)
+            print(f"Der Backprozess wurde abgeschlossen.")
+        else:
+            print(f"Im Moment gibt es keinen Bedarf für neue Backwaren.")
 
 testchef = Chef("Jana", 4000)
 testverkäufer = Verkäufer_in("Alexander", 2000)

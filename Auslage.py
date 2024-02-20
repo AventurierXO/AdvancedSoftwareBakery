@@ -16,7 +16,7 @@ class Auslage_Thresen:
         auslage = self.prüf_Bestand()
         fehlende_backwaren = []
         for backware in auslage:
-            if auslage[backware] == 0:
+            if auslage[backware] <= 50:
                 fehlende_backwaren.append(backware)
         return fehlende_backwaren
 
@@ -61,15 +61,22 @@ class Kasse:
         self.__geld += float(betrag)
         print(f"Es wurden {betrag} € in die Kasse eingezahlt.")
 
-class Bestellung:
-    # eine Bestellung ist eine Liste von Tupeln, die jeweils das Backwerk
-    # und die Anzahl der bestellten Backwerke enthält
+class Kaffeemaschine:
+    def __init__(self, getränke_optionen):
+        self.__getränke_optionen = getränke_optionen
 
-    def __init__(self, bestellung):
-        self.__bestellung = bestellung
+    def schaut_Optionen_an(self):
+        return self.__getränke_optionen
 
-    def schaut_Bestellung_an(self):
-        return self.__bestellung
+    def macht_Getränk(self, getränke):
+        fertige_getränke = []
+        for getränk in getränke:
+            if getränk[0] in self.__getränke_optionen:
+                print(f"Die Kaffeemschine bereitet eine/n {getränk[0]} {getränk[1]} mal zu.")
+                fertige_getränke.append(getränk)
+            else:
+                print(f"Dieses Getränk kann die Kaffeemaschine nicht zubereiten.")
+        return fertige_getränke
 
 auslage = {
     "Weizensemmel": 50,
@@ -105,10 +112,19 @@ preisliste = {
     "Croissant": 1.20,
     "Streuselkuchen": 1.40,
     "Bienenstich": 1.40,
-    "Pfannkuchen": 1.20
+    "Pfannkuchen": 1.20,
+    "Pot Kaffee": 4.00,
+    "Tasse Kaffee": 1.70,
+    "Latte Macchiato": 2.50,
+    "Cappuccino": 2.00,
+    "Espresso": 1.80,
+    "Heiße Schokolade": 2.50
 }
+
+getränke_optionen = ["Pot Kaffee", "Tasse Kaffee", "Latte Macchiato", "Cappucino", "Espresso", "Heiße Schokolade"]
 
 kasse = Kasse(10000)
 auslage = Auslage_Thresen(auslage)
 preisliste = Preisliste(preisliste)
 auslage2 = Auslage_Thresen(auslage2)
+kaffeemaschine = Kaffeemaschine(getränke_optionen)

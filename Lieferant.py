@@ -51,19 +51,19 @@ bestand = {
     "Zucker": 1000,
     "Milch": 1000,
     "Eier": 1000,
-    "Glasur": 1000,
     "Hefe": 1000,
-    "Streusel": 1000
+    "Wasser": 1000,
+    "Butter": 1000
 }
 
 preisliste = {
     "Mehl": 1.00,
     "Zucker": 1.00,
-    "Milch": 1.50,
+    "Milch": 1.10,
     "Eier": 2.50,
-    "Glasur": 1.80,
     "Hefe": 1.80,
-    "Streusel": 2.00
+    "Butter": 1.50,
+    "Wasser": 0.50
 }
 
 testlieferbestand = Lieferbestand(bestand)

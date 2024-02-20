@@ -15,30 +15,27 @@ class Kunde:
             gewünschte_waren = random.choice(liste_waren)
             anzahl_gewünschter_waren = random.randint(1, 4)
             bestellung.append((gewünschte_waren, anzahl_gewünschter_waren))
-        print(f"Der Kunde möchte folgende Backwaren kaufen: {bestellung}")
+        print(f"Der Kunde möchte folgende Waren kaufen: {bestellung}")
         return bestellung
 
     def gibt_Name(self):
         return self.__name
-
-    def gibt_Bestellung_auf(self, bestellung):
-        # Bestellung ist in Auslage definiert
-        print(f"Der Kunde bestellt folgende Backwaren für morgen zum Abholen: {bestellung}")
-        bestellung = Auslage.Bestellung(bestellung)
-        return bestellung
-
-    def holt_Bestellung_ab(self, bestellung):
-        print("Der Kunde holt seine Bestellung ab.")
-        print(Auslage.bestellung.schaut_Bestellung_an())
 
     def bezahlen(self, rechnung):
         geldbetrag = rechnung
         print(f"Der Kunde überreicht {rechnung}€.")
         return geldbetrag
 
-    def bestellt_Kaffee(self):
-        print("Der Kunde bestellt einen Kaffee.")
-        # braucht noch Inventar in der Auslage
+    def kauft_Heißgetränk(self, kaffeemaschine):
+        getränke = []
+        anzahl_versch_waren = random.randint(1, 2)
+        liste_getränke = kaffeemaschine.schaut_Optionen_an()
+        for anzahl in range(anzahl_versch_waren):
+            gewünschte_waren = random.choice(liste_getränke)
+            anzahl_gewünschter_waren = random.randint(1, 2)
+            getränke.append((gewünschte_waren, anzahl_gewünschter_waren))
+        print(f"Der Kunde möchte folgende Backwaren kaufen: {getränke}")
+        return getränke
 
     # Betreten des Verkaufsraums erstellt Kunden?
     # Verlassen des Verkaufsraums löscht Kunden, falls dieser keine Bestellung aufgegeben hat

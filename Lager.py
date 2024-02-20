@@ -17,15 +17,15 @@ class Lagerbestand:
         print(f"Der Lagerbestand wurde mit {waren} aufgefüllt.")
         print(f"Der Lagerbestand sieht nun so aus: {lagerbestand}")
 
-    def wird_aus_dem_Lager_genommen(self, waren):
+    def wird_aus_dem_Lager_genommen(self, waren, anzahl = 50):
         # waren ist eine Liste von Waren
         lagerbestand = self.prüft_Bestand()
         geholte_waren = []
         for teil in waren:
-            if lagerbestand[teil] < 50:
+            if lagerbestand[teil] < anzahl:
                 print(f"Es sind nicht mehr genug Stück von {teil} eingelagert.")
             else:
-                lagerbestand[teil] -= 50
+                lagerbestand[teil] -= anzahl
                 geholte_waren.append(teil)
         print(f"Es wurden folgende Waren aus dem Lager geholt: {geholte_waren}")
         print(f"Der Lagerbestand sieht nun so aus: {lagerbestand}")
@@ -45,9 +45,9 @@ lagerbestand = {
     "Zucker": 50,
     "Milch": 30,
     "Eier": 30,
-    "Glasur": 50,
     "Hefe": 50,
-    "Streusel": 50
+    "Butter": 50,
+    "Wasser": 50
 }
 
 testbestand = Lagerbestand(lagerbestand)
