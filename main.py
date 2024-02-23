@@ -12,9 +12,9 @@ if __name__ == '__main__':
     print(f"Hier eine Darstellung für einen Auffüllungsprozess der Auslage:")
     Büro.testverkäufer.Backwaren_nachbestellen(Auslage.auslage, Büro.testbäcker, Lager.testbestand)
 
-    # hier den Backprozess einfügen!
+    # Backprozess
     print(f"Hier eine Darstellung von einem Backprozess:")
-    Büro.testbäcker.backt()
+    Büro.testbäcker.backt(Lager.testbestand)
 
     #Durchführen einer Lohnänderung
     print(f"Hier eine Darstellung von einer Lohnänderung:")
@@ -22,11 +22,7 @@ if __name__ == '__main__':
 
     #Lieferung für Zutaten:
     print(f"Hier eine Darstellung für das Nachbestellen von Zutaten:")
-    Büro.testchef.bestellt_Zutaten()
+    Büro.testchef.bestellt_Zutaten(Lager.testbestand)
 
-    """
-      
-    TO DO:
-    - auf Domain zugreifen oder Objekte der Funktion übergeben? (Auslage.kasse.funktion oder kasse.funktion mit kasse
-        übergeben
-    """
+""" TO DO:
+    beim Lieferanten ne Kasse eröffnen und nen richtigen Bezahlvorgang für den Chef einrichten"""
