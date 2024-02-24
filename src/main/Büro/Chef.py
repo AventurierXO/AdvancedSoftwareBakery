@@ -7,7 +7,6 @@ class Chef(Angestellte):
         super().__init__(name, lohn)
 
     def ändert_lohn(self, mitarbeiter, lohnänderung):
-        print(f"Der bisherige Lohn beträgt {mitarbeiter.gibt_Lohn_an()} €.")
         if lohnänderung <= 0:
             raise ValueError(f"Der Lohn kann nicht kleiner oder gleich 0 sein.")
         mitarbeiter.ändere_Lohn(lohnänderung)
