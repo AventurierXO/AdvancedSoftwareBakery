@@ -81,21 +81,9 @@ rezeptbuch = {
 testrezepte = Rezepte(rezeptbuch)
 
 testkunde = Kunde("Julia")
-testbäcker = Bäcker_in("Johanna", 2500, lagerbestand = testlagerbestand, rezepte=testrezepte)
-testkasse = Kasse(10000)
-testverkäufer = Verkäufer_in("Alex", 2000, preisliste = testpreisliste, auslage = testauslage, kasse = testkasse, kaffeemaschine = testkaffeemaschine)
-
-def test_erstelle_Rechnung():
-    test_einkauf1 = [("Pfannkuchen", 3), ("Roggenmischbrot", 2)]
-    test_einkauf2 = []
-    test_einkauf3 = [("Huggelmupf", 1)]
-
-    rechnung = testverkäufer.erstelle_Rechnung(test_einkauf1,)
-    with pytest.raises(ValueError):
-        testverkäufer.erstelle_Rechnung(test_einkauf2)
-    with pytest.raises(KeyError):
-        testverkäufer.erstelle_Rechnung(test_einkauf3)
-    assert rechnung == 7.6
+testbäcker = Bäcker_in("Johanna", 2500, testlagerbestand, testrezepte)
+testkasse = Kasse(10000, testpreisliste)
+testverkäufer = Verkäufer_in("Alex", 2000, testauslage, testkasse, testkaffeemaschine)
 
 def test_kassiere_Geld_ein():
     with pytest.raises(ValueError):
@@ -109,16 +97,16 @@ def test_verkaufe_Backwaren():
     testbestellung2 = [("Weizensemmel", 3), ("Kürbiskernbrötchen", 2)]
     testbestellung3 = [("Unsinnsbrot", 3)]
 
-    rechnung = testverkäufer.erstelle_Rechnung(testbestellung2)
-    check_auslage = testauslage.prüf_Bestand()
-    check_kasse_vor_einzahlung = testkasse.geld_in_kasse()
+    rechnung = testverkäufer.kasse.erstelle_Rechnung(testbestellung2)
+    check_auslage = testverkäufer.auslage.prüf_Bestand()
+    check_kasse_vor_einzahlung = testverkäufer.kasse.geld_in_kasse()
 
     with pytest.raises(ValueError):
         testverkäufer.verkaufe_Backwaren(testbestellung1, testkunde)
     testverkäufer.verkaufe_Backwaren(testbestellung2, testkunde)
     assert check_auslage["Weizensemmel"] == 47
     assert check_auslage["Kürbiskernbrötchen"] == 48
-    check_kasse_nach_einzahlung = testkasse.geld_in_kasse()
+    check_kasse_nach_einzahlung = testverkäufer.kasse.geld_in_kasse()
     assert check_kasse_nach_einzahlung == check_kasse_vor_einzahlung + rechnung
     with pytest.raises(KeyError):
         testverkäufer.verkaufe_Backwaren(testbestellung3, testkunde)
@@ -127,12 +115,12 @@ def test_verkaufe_Getränke():
     testbestellung1 = []
     testbestellung2 = [("Latte Macchiato", 2), ("Pot Kaffee", 1)]
     testbestellung3 = [("Unsinnsgetränk", 2)]
-    rechnung = testverkäufer.erstelle_Rechnung(testbestellung2)
-    check_kasse_vor_einzahlung = testkasse.geld_in_kasse()
+    rechnung = testverkäufer.kasse.erstelle_Rechnung(testbestellung2)
+    check_kasse_vor_einzahlung = testverkäufer.kasse.geld_in_kasse()
     with pytest.raises(ValueError):
         testverkäufer.verkaufe_Getränke(testbestellung1, testkunde)
     testverkäufer.verkaufe_Getränke(testbestellung2, testkunde)
-    check_kasse_nach_einzahlung = testkasse.geld_in_kasse()
+    check_kasse_nach_einzahlung = testverkäufer.kasse.geld_in_kasse()
     assert check_kasse_nach_einzahlung == check_kasse_vor_einzahlung + rechnung
     with pytest.raises(ValueError):
         testverkäufer.verkaufe_Getränke(testbestellung3, testkunde)

@@ -6,7 +6,6 @@ from Lieferant.Lieferbestand import Lieferbestand
 from Lieferant.Kasse_Lieferant import Kasse_Lieferant
 from Lager.Lagerbestand import Lagerbestand
 
-testkasse = Kasse_Lieferant(10000)
 testbestand_dummy = ["Mehl", "Zucker", "Milch", "Eier", "Hefe", "Wasser", "Butter", "Kürbiskerne"]
 testbestand = Lieferbestand(testbestand_dummy)
 
@@ -44,21 +43,21 @@ dummy_lagerbestand = {
 }
 
 testlagerbestand = Lagerbestand(dummy_lagerbestand)
-
 testlagerarbeiter = Lagerarbeiter(testbestand)
-testlieferant = Lieferant("Testlieferant", testpreisliste, testlagerarbeiter, testbestand, testkasse)
+testkasse = Kasse_Lieferant(10000, testpreisliste)
+testlieferant = Lieferant("Testlieferant", testlagerarbeiter, testbestand, testkasse)
 
 def test_erstelle_Rechnung():
     test_einkauf1 = ["Mehl"]
     test_einkauf2 = []
     test_einkauf3 = ["Unsinnszutat"]
 
-    rechnung = testlieferant.erstellt_Rechnung(test_einkauf1)
+    rechnung = testlieferant.kasse.erstellt_Rechnung(test_einkauf1)
     assert rechnung == 50
     with pytest.raises(ValueError):
-        testlieferant.erstellt_Rechnung(test_einkauf2)
+        testlieferant.kasse.erstellt_Rechnung(test_einkauf2)
     with pytest.raises(KeyError):
-        testlieferant.erstellt_Rechnung(test_einkauf3)
+        testlieferant.kasse.erstellt_Rechnung(test_einkauf3)
 
 def test_erfülle_Lieferung():
     test_einkauf1 = ["Mehl"]
