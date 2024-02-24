@@ -70,15 +70,14 @@ preisliste = {
 }
 
 testpreisliste1 = Preisliste_Lieferant(preisliste)
-testkasse = Kasse(100)
-testkasse_lieferant = Kasse_Lieferant(1000)
 testpreisliste2 = Preisliste({})
+testkasse = Kasse(100, testpreisliste2)
+testkasse_lieferant = Kasse_Lieferant(1000, testpreisliste1)
 testauslage = Auslage_Tresen({})
 testkaffeemaschine = Kaffeemaschine([])
-
 testlagerarbeiter = Lagerarbeiter(testbestand)
-testlieferant = Lieferant("Testo", testpreisliste1, testlagerarbeiter, testbestand, testkasse_lieferant)
-testverkäufer = Verkäufer_in("Anna", 2000, testpreisliste2, testauslage, testkasse, testkaffeemaschine)
+testlieferant = Lieferant("Testo", testlagerarbeiter, testbestand, testkasse_lieferant)
+testverkäufer = Verkäufer_in("Anna", 2000, testauslage, testkasse, testkaffeemaschine)
 testchef1 = Chef("Joachim", 4000, testlagerbestand1, testlieferant)
 testchef2 = Chef("Ole", 4000, testlagerbestand2, testlieferant)
 
