@@ -33,6 +33,5 @@ jobs:
         pip install -e .
     - name: Test with pytest
       run: |
-        PYTHONPATH=.
-        python -m pytest
+        PYTHONPATH=. pytest
 
