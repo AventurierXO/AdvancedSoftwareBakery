@@ -11,7 +11,6 @@ class Kaffeemaschine:
         fertige_getränke = []
         for getränk in getränke:
             if (getränk[0] in self.__getränke_optionen) & (getränk[1] > 0):
-                print(f"Die Kaffeemaschine bereitet eine/n {getränk[0]} {getränk[1]} mal zu.")
                 fertige_getränke.append(getränk)
             else:
                 raise ValueError(f"Dieses Getränk kann die Kaffeemaschine nicht zubereiten!")
