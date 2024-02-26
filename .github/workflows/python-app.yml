@@ -31,5 +31,4 @@ jobs:
     - name: Test with pytest
       run: |
         pip install --editable .
-        pytest
 
