@@ -1,0 +1,8 @@
+[project]
+name = "AdvancedSoftwareBakery"
+version = "0.0.1"
+[tool.pytest.ini_options]
+pythonpath = "src"
+addopts = [
+    "--import-mode=importlib",
+]
