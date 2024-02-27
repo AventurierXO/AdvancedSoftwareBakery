@@ -29,13 +29,13 @@ testauslage = Auslage_Tresen({})
 testkaffeemaschine = Kaffeemaschine([])
 testverkäufer = Verkäufer_in("Alex", 2000, testauslage, testkasse, testkaffeemaschine)
 
-def test_geld_einzahlen():
-    testkasse.geld_einzahlen(200)
-    assert testkasse.geld_in_kasse() == 10200
+def test_zahle_Geld_ein():
+    testkasse.zahle_Geld_ein(200)
+    assert testkasse.Geld_in_Kasse() == 10200
     with pytest.raises(ValueError):
-        testkasse.geld_einzahlen(-200)
+        testkasse.zahle_Geld_ein(-200)
     with pytest.raises(ValueError):
-        testkasse.geld_einzahlen(0)
+        testkasse.zahle_Geld_ein(0)
 
 def test_erstelle_Rechnung():
     test_einkauf1 = [("Pfannkuchen", 3), ("Roggenmischbrot", 2)]

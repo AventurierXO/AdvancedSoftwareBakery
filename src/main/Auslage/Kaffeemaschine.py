@@ -2,10 +2,10 @@ class Kaffeemaschine:
     def __init__(self, getränke_optionen):
         self.__getränke_optionen = getränke_optionen
 
-    def schaut_Optionen_an(self):
+    def schaue_Optionen_an(self):
         return self.__getränke_optionen
 
-    def macht_Getränk(self, getränke):
+    def mache_Getränk(self, getränke):
         if getränke == []:
             raise ValueError("Die Kaffeemaschine kann keine leere Bestellung annehmen!")
         fertige_getränke = []

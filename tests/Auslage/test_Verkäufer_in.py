@@ -98,15 +98,15 @@ def test_verkaufe_Backwaren():
     testbestellung3 = [("Unsinnsbrot", 3)]
 
     rechnung = testverkäufer.kasse.erstelle_Rechnung(testbestellung2)
-    check_auslage = testverkäufer.auslage.prüf_Bestand()
-    check_kasse_vor_einzahlung = testverkäufer.kasse.geld_in_kasse()
+    check_auslage = testverkäufer.auslage.prüfe_Bestand()
+    check_kasse_vor_einzahlung = testverkäufer.kasse.Geld_in_Kasse()
 
     with pytest.raises(ValueError):
         testverkäufer.verkaufe_Backwaren(testbestellung1, testkunde)
     testverkäufer.verkaufe_Backwaren(testbestellung2, testkunde)
     assert check_auslage["Weizensemmel"] == 47
     assert check_auslage["Kürbiskernbrötchen"] == 48
-    check_kasse_nach_einzahlung = testverkäufer.kasse.geld_in_kasse()
+    check_kasse_nach_einzahlung = testverkäufer.kasse.Geld_in_Kasse()
     assert check_kasse_nach_einzahlung == check_kasse_vor_einzahlung + rechnung
     with pytest.raises(KeyError):
         testverkäufer.verkaufe_Backwaren(testbestellung3, testkunde)
@@ -116,17 +116,17 @@ def test_verkaufe_Getränke():
     testbestellung2 = [("Latte Macchiato", 2), ("Pot Kaffee", 1)]
     testbestellung3 = [("Unsinnsgetränk", 2)]
     rechnung = testverkäufer.kasse.erstelle_Rechnung(testbestellung2)
-    check_kasse_vor_einzahlung = testverkäufer.kasse.geld_in_kasse()
+    check_kasse_vor_einzahlung = testverkäufer.kasse.Geld_in_Kasse()
     with pytest.raises(ValueError):
         testverkäufer.verkaufe_Getränke(testbestellung1, testkunde)
     testverkäufer.verkaufe_Getränke(testbestellung2, testkunde)
-    check_kasse_nach_einzahlung = testverkäufer.kasse.geld_in_kasse()
+    check_kasse_nach_einzahlung = testverkäufer.kasse.Geld_in_Kasse()
     assert check_kasse_nach_einzahlung == check_kasse_vor_einzahlung + rechnung
     with pytest.raises(ValueError):
         testverkäufer.verkaufe_Getränke(testbestellung3, testkunde)
 
 def test_Backwaren_nachbestellen():
-    testverkäufer.Backwaren_nachbestellen(testbäcker)
-    check_auslage = testverkäufer.auslage.prüf_Bestand()
+    testverkäufer.bestelle_Backwaren_nach(testbäcker)
+    check_auslage = testverkäufer.auslage.prüfe_Bestand()
     assert check_auslage["Bienenstich"] == 50
     assert check_auslage["Streuselkuchen"] == 50

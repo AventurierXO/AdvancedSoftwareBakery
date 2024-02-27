@@ -54,40 +54,40 @@ testbäcker1 = Bäcker_in("Gustav", 2500, test_lagerbestand1, testrezepte)
 testbäcker2 = Bäcker_in("Hannah", 2500, test_lagerbestand2, testrezepte)
 testbäcker3 = Bäcker_in("Johann", 2500, test_lagerbestand3, testrezepte)
 
-def test_liefert_Backstücke():
+def test_liefere_Backstücke():
     test_anforderung1 = []
     test_anforderung2 = ["Roggenmischbrot", "Pfannkuchen"]
     test_anforderung3 = ["Kürbiskernbrötchen", "Fakekuchen"]
     test_anforderung4 = ["Bienenstich", "Roggenmischbrot"]
 
     with pytest.raises(ValueError):
-        assert testbäcker1.liefert_Backstücke(test_anforderung1)
+        assert testbäcker1.liefere_Backstücke(test_anforderung1)
     with pytest.raises(ValueError):
-        assert testbäcker2.liefert_Backstücke(test_anforderung1)
-    assert testbäcker2.liefert_Backstücke(test_anforderung2) == ["Roggenmischbrot", "Pfannkuchen"]
+        assert testbäcker2.liefere_Backstücke(test_anforderung1)
+    assert testbäcker2.liefere_Backstücke(test_anforderung2) == ["Roggenmischbrot", "Pfannkuchen"]
     with pytest.raises(KeyError):
-        assert testbäcker3.liefert_Backstücke(test_anforderung3) == ["Kürbiskernbrötchen"]
+        assert testbäcker3.liefere_Backstücke(test_anforderung3) == ["Kürbiskernbrötchen"]
     with pytest.raises(ValueError):
-        assert testbäcker2.liefert_Backstücke(test_anforderung4) == ["Bienenstich"]
+        assert testbäcker2.liefere_Backstücke(test_anforderung4) == ["Bienenstich"]
 
 def test_ermittelt_nachzufüllende_Backstücke():
     with pytest.raises(ValueError):
-        assert testbäcker3.ermittelt_nachzufüllende_backstücke() == ["Roggenmischbrot", "Dinkelbrot", "Bienenstich"]
+        assert testbäcker3.ermittle_nachzufüllende_Backstücke() == ["Roggenmischbrot", "Dinkelbrot", "Bienenstich"]
 
 def test_backt():
     bestellung_dummy1 = ["Roggenmischbrot"]
     bestellung_dummy2 = ["Fakekuchen"]
 
-    check_lager = test_lagerbestand3.prüft_Bestand()
+    check_lager = test_lagerbestand3.prüfe_Bestand()
 
-    testbäcker3.backt(bestellung_dummy1)
+    testbäcker3.backe(bestellung_dummy1)
     assert check_lager["Mehl"] == 46
     assert check_lager["Hefe"] == 48
     assert check_lager["Wasser"] == 48
     assert check_lager["Roggenmischbrot"] == 50
 
     with pytest.raises(KeyError):
-        assert testbäcker3.backt(bestellung_dummy2)
+        assert testbäcker3.backe(bestellung_dummy2)
 def test_produziere_Backstück():
     test_backstücke1 = []
     test_backstücke2 = ["Kürbiskernbrötchen", "Dinkelbrot"]
@@ -104,15 +104,15 @@ def test_holt_Zutaten():
     test_zutatenliste2 = [("Mehl", 2), ("Wasser", 3)]
     test_zutatenliste3 = [("Unsinnszutat", 2)]
     test_zutatenliste4 = [("Mehl", 0)]
-    check_bestand = test_lagerbestand3.prüft_Bestand()
+    check_bestand = test_lagerbestand3.prüfe_Bestand()
     check_bestand_mehl = check_bestand["Mehl"]
     check_bestand_wasser = check_bestand["Wasser"]
     with pytest.raises(ValueError):
-        assert testbäcker3.holt_Zutaten(test_zutatenliste1)
-    testbäcker3.holt_Zutaten(test_zutatenliste2)
+        assert testbäcker3.hole_Zutaten(test_zutatenliste1)
+    testbäcker3.hole_Zutaten(test_zutatenliste2)
     assert check_bestand["Mehl"] == check_bestand_mehl - 2
     assert check_bestand["Wasser"] == check_bestand_wasser - 3
     with pytest.raises(KeyError):
-        testbäcker3.holt_Zutaten(test_zutatenliste3)
+        testbäcker3.hole_Zutaten(test_zutatenliste3)
     with pytest.raises(ValueError):
-        testbäcker3.holt_Zutaten(test_zutatenliste4)
+        testbäcker3.hole_Zutaten(test_zutatenliste4)

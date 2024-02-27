@@ -38,22 +38,22 @@ test_bestand2 = Lagerbestand(dummy_lagerbestand2)
 test_bestand3 = Lagerbestand(dummy_lagerbestand3)
 
 def test_prüft_fehlende_Waren():
-    assert test_bestand3.prüft_fehlende_Waren() == ["Roggenmischbrot", "Dinkelbrot", "Bienenstich"]
-    assert test_bestand3.prüft_fehlende_Waren(back = False) == ["Mehl", "Eier"]
+    assert test_bestand3.prüfe_fehlende_Waren() == ["Roggenmischbrot", "Dinkelbrot", "Bienenstich"]
+    assert test_bestand3.prüfe_fehlende_Waren(back = False) == ["Mehl", "Eier"]
 
 def test_wird_gelagert():
     einzulagern1 = []
     einzulagern2 = ["Kürbiskernbrötchen"]
     einzulagern3 = ["Unsinnskuchen"]
 
-    check_bestand = test_bestand1.prüft_Bestand()
+    check_bestand = test_bestand1.prüfe_Bestand()
 
     with pytest.raises(ValueError):
-        assert test_bestand1.wird_gelagert(einzulagern1)
-    test_bestand1.wird_gelagert(einzulagern2)
+        assert test_bestand1.lagere_ein(einzulagern1)
+    test_bestand1.lagere_ein(einzulagern2)
     assert check_bestand["Kürbiskernbrötchen"] == 50
     with pytest.raises(KeyError):
-        assert test_bestand1.wird_gelagert(einzulagern3)
+        assert test_bestand1.lagere_ein(einzulagern3)
 
 def test_wird_aus_dem_Lager_genommen():
     test_waren1 = []
@@ -64,11 +64,11 @@ def test_wird_aus_dem_Lager_genommen():
     anzahl2 = 51
 
     with pytest.raises(ValueError):
-        assert test_bestand1.wird_aus_dem_Lager_genommen(test_waren1)
-    assert test_bestand1.wird_aus_dem_Lager_genommen(test_waren2) == ["Roggenmischbrot", "Pfannkuchen"]
+        assert test_bestand1.nimm_aus_dem_Lager(test_waren1)
+    assert test_bestand1.nimm_aus_dem_Lager(test_waren2) == ["Roggenmischbrot", "Pfannkuchen"]
     with pytest.raises(KeyError):
-        assert test_bestand1.wird_aus_dem_Lager_genommen(test_waren3) == ["Kürbiskernbrötchen"]
+        assert test_bestand1.nimm_aus_dem_Lager(test_waren3) == ["Kürbiskernbrötchen"]
     with pytest.raises(ValueError):
-        assert test_bestand1.wird_aus_dem_Lager_genommen(test_waren2, anzahl1)
+        assert test_bestand1.nimm_aus_dem_Lager(test_waren2, anzahl1)
     with pytest.raises(ValueError):
-        assert test_bestand1.wird_aus_dem_Lager_genommen(test_waren2, anzahl2)
+        assert test_bestand1.nimm_aus_dem_Lager(test_waren2, anzahl2)

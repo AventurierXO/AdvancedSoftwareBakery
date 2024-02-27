@@ -13,7 +13,7 @@ def test_stellt_Lieferung_zusammen():
     test_bestellung3 = ["Mehl", "Wasser", "Hefe"]
 
     with pytest.raises(ValueError):
-        assert testlagerarbeiter.stellt_Lieferung_zusammen(test_bestellung1)
+        assert testlagerarbeiter.stelle_Lieferung_zusammen(test_bestellung1)
     with pytest.raises(ValueError):
-        assert testlagerarbeiter.stellt_Lieferung_zusammen(test_bestellung2)
-    assert testlagerarbeiter.stellt_Lieferung_zusammen(test_bestellung3) == ["Mehl", "Wasser", "Hefe"]
+        assert testlagerarbeiter.stelle_Lieferung_zusammen(test_bestellung2)
+    assert testlagerarbeiter.stelle_Lieferung_zusammen(test_bestellung3) == ["Mehl", "Wasser", "Hefe"]

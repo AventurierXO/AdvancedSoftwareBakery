@@ -3,16 +3,16 @@ class Kasse:
         self.__geld = geld
         self.preisliste = preisliste
 
-    def geld_in_kasse(self):
+    def Geld_in_Kasse(self):
         return self.__geld
 
-    def geld_einzahlen(self, betrag):
+    def zahle_Geld_ein(self, betrag):
         if betrag <= 0:
             raise ValueError("Es sollen keine Beträge kleiner oder gleich 0 eingezahlt werden!")
         self.__geld += float(betrag)
 
     def erstelle_Rechnung(self, einkauf):
-        preisliste_check = self.preisliste.prüf_Preisliste()
+        preisliste_check = self.preisliste.prüfe_Preisliste()
         rechnung = 0
         if einkauf == []:
             raise ValueError("Der zu bezahlende Einkauf kann nicht leer sein!")

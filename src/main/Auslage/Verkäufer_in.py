@@ -24,21 +24,21 @@ class Verkäufer_in(Angestellte):
         if zu_bezahlen == 0:
             raise ValueError("Der Verkauf kann nicht bezahlt werden, weil keine der gewünschten Waren da ist.")
         eingenommenes_geld = self.kassiere_Geld_ein(zu_bezahlen, kunde)
-        self.kasse.geld_einzahlen(eingenommenes_geld)
+        self.kasse.zahle_Geld_ein(eingenommenes_geld)
 
     def verkaufe_Getränke(self, bestellung, kunde):
         if bestellung == []:
             raise ValueError("Eine leere Bestellung kann nicht verarbeitet werden!")
         zu_bezahlen = 0
-        fertige_wunschgetränke = self.kaffeemaschine.macht_Getränk(bestellung)
+        fertige_wunschgetränke = self.kaffeemaschine.mache_Getränk(bestellung)
         zu_bezahlen += self.kasse.erstelle_Rechnung(fertige_wunschgetränke)
         eingenommenes_geld = self.kassiere_Geld_ein(zu_bezahlen, kunde)
-        self.kasse.geld_einzahlen(eingenommenes_geld)
+        self.kasse.zahle_Geld_ein(eingenommenes_geld)
 
-    def Backwaren_nachbestellen(self, bäcker):
-        fehlende_backwaren = self.auslage.erfasst_fehlende_Backwaren()
+    def bestelle_Backwaren_nach(self, bäcker):
+        fehlende_backwaren = self.auslage.erfasse_fehlende_Backwaren()
         if fehlende_backwaren != []:
-            geholte_backwaren = bäcker.liefert_Backstücke(fehlende_backwaren)
+            geholte_backwaren = bäcker.liefere_Backstücke(fehlende_backwaren)
             self.auslage.fülle_Bestand_nach(geholte_backwaren)
         else:
             raise ValueError(f"Es sind noch genug Backstücke von jeder Sorte vorhanden.")

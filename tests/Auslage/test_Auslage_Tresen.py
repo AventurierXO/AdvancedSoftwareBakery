@@ -28,14 +28,14 @@ auslage2_basis = {
 test_auslage1 = Auslage_Tresen(auslage1_basis)
 test_auslage2 = Auslage_Tresen(auslage2_basis)
 
-def test_erfasst_fehlende_backwaren():
-    backwaren = test_auslage2.erfasst_fehlende_Backwaren()
+def test_erfasse_fehlende_backwaren():
+    backwaren = test_auslage2.erfasse_fehlende_Backwaren()
     assert backwaren == ["Roggenmischbrot", "Vollkornbrot"]
 
 def test_entnehme_backwerk():
     assert test_auslage1.entnehme_Backwerk([("Roggenmischbrot", 2), ("Kürbiskernbrötchen", 2)]) == [
         ("Roggenmischbrot", 2), ("Kürbiskernbrötchen", 2)]
-    test_auslage1_save = test_auslage1.prüf_Bestand()
+    test_auslage1_save = test_auslage1.prüfe_Bestand()
     assert test_auslage1_save["Roggenmischbrot"] == 48
     assert test_auslage1_save["Kürbiskernbrötchen"] == 48
     with pytest.raises(ValueError):
@@ -52,7 +52,7 @@ def test_fülle_bestand_nach():
     lieferung2 = ["Roggenmischbrot", "Vollkornbrot"]
     lieferung3 = ["Fakekuchen"]
 
-    check_auslage = test_auslage2.prüf_Bestand()
+    check_auslage = test_auslage2.prüfe_Bestand()
     with pytest.raises(ValueError):
         assert test_auslage2.fülle_Bestand_nach(lieferung1)
     test_auslage2.fülle_Bestand_nach(lieferung2)

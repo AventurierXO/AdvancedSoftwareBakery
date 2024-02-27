@@ -2,14 +2,14 @@ class Auslage_Tresen:
     def __init__(self, auslage):
         self.__auslage = auslage
 
-    def prüf_Bestand(self):
+    def prüfe_Bestand(self):
         return self.__auslage
 
     def schaue_Waren_an(self):
         return list(self.__auslage.keys())
 
-    def erfasst_fehlende_Backwaren(self):
-        auslage = self.prüf_Bestand()
+    def erfasse_fehlende_Backwaren(self):
+        auslage = self.prüfe_Bestand()
         fehlende_backwaren = []
         for backware in auslage:
             if auslage[backware] < 50:
@@ -23,7 +23,7 @@ class Auslage_Tresen:
         if wunschwaren == []:
             raise ValueError("Die Liste der zu entnehmenden Waren kann nicht leer sein!")
         einkauf = []
-        auslage = self.prüf_Bestand()
+        auslage = self.prüfe_Bestand()
         for teilbestellung in wunschwaren:
             backware = teilbestellung[0]
             anzahl = teilbestellung[1]
@@ -41,7 +41,7 @@ class Auslage_Tresen:
     def fülle_Bestand_nach(self, lieferung):
         if lieferung == []:
             raise ValueError("Um die Auslage befüllen zu können, muss die Lieferung Backwerke enthalten!")
-        auslage = self.prüf_Bestand()
+        auslage = self.prüfe_Bestand()
         for teil in lieferung:
             if teil not in list(auslage.keys()):
                 raise KeyError("Die Backware gibt es in der Auslage nicht.")

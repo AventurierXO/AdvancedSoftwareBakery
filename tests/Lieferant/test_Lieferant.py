@@ -52,24 +52,24 @@ def test_erstelle_Rechnung():
     test_einkauf2 = []
     test_einkauf3 = ["Unsinnszutat"]
 
-    rechnung = testlieferant.kasse.erstellt_Rechnung(test_einkauf1)
+    rechnung = testlieferant.kasse.erstelle_Rechnung_Lieferung(test_einkauf1)
     assert rechnung == 50
     with pytest.raises(ValueError):
-        testlieferant.kasse.erstellt_Rechnung(test_einkauf2)
+        testlieferant.kasse.erstelle_Rechnung_Lieferung(test_einkauf2)
     with pytest.raises(KeyError):
-        testlieferant.kasse.erstellt_Rechnung(test_einkauf3)
+        testlieferant.kasse.erstelle_Rechnung_Lieferung(test_einkauf3)
 
 def test_erfülle_Lieferung():
     test_einkauf1 = ["Mehl"]
     test_einkauf2 = []
     test_einkauf3 = ["Unsinnszutat"]
 
-    rechnung = testlieferant.erfüllt_Lieferung(test_einkauf1, testlagerbestand)
+    rechnung = testlieferant.erfülle_Lieferung(test_einkauf1, testlagerbestand)
     assert rechnung == 50
     with pytest.raises(ValueError):
-        assert testlieferant.erfüllt_Lieferung(test_einkauf2, testlagerbestand)
+        assert testlieferant.erfülle_Lieferung(test_einkauf2, testlagerbestand)
     with pytest.raises(ValueError):
-        assert testlieferant.erfüllt_Lieferung(test_einkauf3, testlagerbestand)
+        assert testlieferant.erfülle_Lieferung(test_einkauf3, testlagerbestand)
 
 def test_kassiere_Geld_ein():
     testgeld1 = 0
@@ -78,9 +78,9 @@ def test_kassiere_Geld_ein():
 
     with pytest.raises(ValueError):
         testlieferant.kassiere_Geld_ein(testgeld1)
-    check_kasse_vor_einzahlung = testkasse.geld_in_kasse()
+    check_kasse_vor_einzahlung = testkasse.Geld_in_Kasse()
     testlieferant.kassiere_Geld_ein(testgeld2)
-    check_kasse_nach_einzahlung = testkasse.geld_in_kasse()
+    check_kasse_nach_einzahlung = testkasse.Geld_in_Kasse()
     assert check_kasse_nach_einzahlung == check_kasse_vor_einzahlung + testgeld2
     with pytest.raises(ValueError):
         testlieferant.kassiere_Geld_ein(testgeld3)
