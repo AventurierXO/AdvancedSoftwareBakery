@@ -30,7 +30,8 @@ class Chef(Angestellte):
     def bezahlt_Rechnung(self, rechnung):
         if rechnung <= 0:
             raise ValueError("Die Rechnung muss größer gleich 0 sein!")
-        self.lieferant.kassiere_Geld_ein(rechnung)
+        geldbetrag = rechnung
+        return geldbetrag
 
     def stelle_an(self, name, lohn, position, auslage, kasse, kaffeemaschine, lagerbestand, rezepte):
         if name in list(self.angestellte.keys()):

@@ -13,6 +13,7 @@ class Bäcker_in(Angestellte):
             raise ValueError("Es sollten keine Backstücke geliefert werden, wenn keine Anforderung besteht!")
         geholte_backwaren = self.lagerbestand.nimm_aus_dem_Lager(anforderung)
         if geholte_backwaren == []:
+            self.backe()
             raise ValueError("Es können nur dann Backwaren an die Auslage geliefert werden, wenn sie im Lager vorhanden sind.")
         return geholte_backwaren
 
@@ -41,8 +42,7 @@ class Bäcker_in(Angestellte):
             aufzufüllende_backstücke = self.ermittle_nachzufüllende_Backstücke()
         else:
             aufzufüllende_backstücke = bestellung
-        if aufzufüllende_backstücke != []:
-            neue_backstücke = self.produziere_Backstück(aufzufüllende_backstücke)
-            self.lagerbestand.lagere_ein(neue_backstücke)
-        else:
+        if aufzufüllende_backstücke == []:
             raise ValueError(f"Im Moment gibt es keinen Bedarf für neue Backwaren.")
+        neue_backstücke = self.produziere_Backstück(aufzufüllende_backstücke)
+        self.lagerbestand.lagere_ein(neue_backstücke)

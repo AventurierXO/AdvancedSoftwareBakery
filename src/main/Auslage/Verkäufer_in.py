@@ -37,8 +37,7 @@ class Verkäufer_in(Angestellte):
 
     def bestelle_Backwaren_nach(self, bäcker):
         fehlende_backwaren = self.auslage.erfasse_fehlende_Backwaren()
-        if fehlende_backwaren != []:
-            geholte_backwaren = bäcker.liefere_Backstücke(fehlende_backwaren)
-            self.auslage.fülle_Bestand_nach(geholte_backwaren)
-        else:
+        if fehlende_backwaren == []:
             raise ValueError(f"Es sind noch genug Backstücke von jeder Sorte vorhanden.")
+        geholte_backwaren = bäcker.liefere_Backstücke(fehlende_backwaren)
+        self.auslage.fülle_Bestand_nach(geholte_backwaren)
