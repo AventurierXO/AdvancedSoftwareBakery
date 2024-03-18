@@ -1,0 +1,167 @@
+@startuml
+
+title Klassendiagramm "Happy Bakery :)"
+
+skinparam groupInheritance 2
+
+package "Lieferant" {
+class Lieferant {
+Lagerarbeiter
+Lieferbestand
+Kasse
+gibt_Namen_an()
+erfülle_Lieferung(Bestellung, Lagerbestand)
+kassiere_Geld_ein(Geld)
+}
+
+class Kasse_Lieferant{
+erstelle_Rechnung_Lieferung()
+}
+
+class Lagerarbeiter{
+Lieferbestand
+stelle_Lieferung_zusammen(Bestellung)
+}
+
+class Lieferbestand{
+Bestand
+prüfe_Bestand()
+}
+
+class Preisliste_Lieferant{}
+
+Lieferant "1" *-- "1" Preisliste_Lieferant
+Lieferant "1" *-- "many" Lagerarbeiter
+Lieferant "1" *-- "1" Kasse_Lieferant
+Lieferant "1" *-- "1" Lieferbestand
+Kasse_Lieferant "1" *-- "1" Preisliste_Lieferant
+}
+
+package "Auslage" {
+
+class Verkäufer_in {
+Auslage_Tresen
+Kasse
+Kaffeemaschine
+verkaufe_Backwaren(Bestellung, Kunde)
+verkaufe_Getränke(Bestellung, Kunde)
+kassiere_Geld_ein(Rechnung, Kunde)
+bestelle_Backwaren_nach(Bäcker)
+}
+
+class Kasse{
+Geld
+Preisliste
+Geld_in_Kasse()
+zahle_Geld_ein(Betrag)
+erstelle_Rechnung(Einkauf)
+}
+
+class Kaffeemaschine{
+Getränke_Optionen
+schaue_Optionen_an()
+mache_Getränk()
+}
+
+class Auslage_Tresen{
+Auslage
+prüfe_Bestand()
+schaue_Waren_an()
+erfasse_fehlende_Backwaren()
+entnehme_Backwerk(Bestellung)
+fülle_Bestand_nach(Lieferung)
+}
+
+class Preisliste{
+Preisliste
+prüfe_Preisliste()
+}
+
+Verkäufer_in "many" *-- "1" Kasse
+Verkäufer_in "many" *-- "many" Kaffeemaschine
+Verkäufer_in "many" *-- "1" Auslage_Tresen
+Kasse "1" *-- "1" Preisliste
+Kasse <|-- Lieferant.Kasse_Lieferant
+}
+
+package "Backstube" {
+class Bäcker_in{
+Lagerbestand
+Rezepte
+liefere_Backstücke(Anforderung)
+ermittle_nachzufüllende_Backstücke()
+produziere_Backstück()
+hole_Zutaten(Zutatenliste)
+backe(Bestellung)
+}
+
+class Rezepte {
+Rezepte
+hole_Rezept(Backstück)
+}
+
+Bäcker_in "many" *-- "1" Rezepte
+
+}
+
+package "Verkaufsraum" {
+
+class Kunde {
+Name
+gibt_Name_an()
+kauft_Backwaren(Auslage, Verkäufer)
+kauft_Heißgetränk(Kaffeemaschine, Verkäufer)
+bezahlen(Rechnung)
+}
+
+class BestellungBuilder {
+Gebäckoptionen()
+Getränkeoptionen()
+Backbestellung_erzeugen()
+Getränkebestellung_erzeugen()
+}
+
+Verkäufer_in "1" --* "many" Kunde
+BestellungBuilder *-- Kunde : uses
+
+}
+
+package "Büro" {
+class Angestellte {
+Name
+Lohn
+gebe_Namen_an()
+gebe_Lohn_an()
+}
+
+class Chef{
+Lagerbestand
+Lieferant
+ändere_Lohn(Mitarbeiter, Lohnänderung)
+bestelle_Zutaten()
+Bestellung_erstellen()
+bezahle_Rechnung(Rechnung)
+stelle_an(Name, Lohn, Position)
+kündige(Mitarbeiter)
+}
+
+Angestellte <|-- Chef
+Angestellte <|-- Auslage.Verkäufer_in
+Angestellte <|-- Backstube.Bäcker_in
+Chef "1" o-- "1" Lieferant.Lieferant
+Preisliste <|-- Preisliste_Lieferant
+}
+
+package "Lager" {
+class Lagerbestand{
+Bestand
+prüfe_fehlende_Waren(back)
+lagere_ein(Waren)
+nimm_aus_dem_Lager(Waren, Anzahl)
+}
+
+Büro.Chef "1" *-- "1" Lager.Lagerbestand
+Lager.Lagerbestand "1" --* "many" Bäcker_in
+}
+
+@enduml

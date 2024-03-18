@@ -5,6 +5,7 @@ class Kasse_Lieferant(Kasse):
         super().__init__(geld, preisliste)
 
     def erstelle_Rechnung_Lieferung(self, lieferung):
+        """Für eine fertige Lieferung wird die Rechnung berechnet."""
         if lieferung == []:
             raise ValueError("Es kann keine Rechnung erstellt werden, wenn die Lieferung leer ist!")
         rechnung = 0

@@ -6,6 +6,8 @@ class Lagerbestand:
         return self.__bestand
 
     def prüfe_fehlende_Waren(self, back = True):
+        """Wenn weniger als 50 Stück von einer Ware vorhanden sind, wird diese aufgenommen. Wenn back == True ist,
+        dann werden fehlende Backwaren ermittelt. Wenn back == False ist, dann werden fehlende Zutaten ermittelt."""
         aufzufüllende_Waren = []
         bestand = self.prüfe_Bestand()
         if back == True:
@@ -23,6 +25,7 @@ class Lagerbestand:
         return aufzufüllende_Waren
 
     def lagere_ein(self, waren):
+        """Eine Liste von Waren wird im Lager um 50 Stück nachgefüllt."""
         if waren == []:
             raise ValueError("Eine Liste einzulagernder Waren darf nicht leer sein!")
         lagerbestand = self.prüfe_Bestand()
@@ -30,6 +33,8 @@ class Lagerbestand:
             lagerbestand[teil] += 50
 
     def nimm_aus_dem_Lager(self, waren, anzahl = 50):
+        """Nimmt Waren aus der übergebenen Liste und füllt das Lager um eine gegebene Anzahl nach. Diese beträgt per
+        Default 50."""
         if anzahl <= 0 or anzahl >= 51:
             raise ValueError("Es muss mindestens ein Stück der Ware aus dem Lager geholt werden bzw. nicht mehr als 50!")
         if waren == []:

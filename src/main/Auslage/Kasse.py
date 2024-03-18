@@ -12,6 +12,7 @@ class Kasse:
         self.__geld += float(betrag)
 
     def erstelle_Rechnung(self, einkauf):
+        """Aus dem übergebenen Einkauf wird mit Hilfe der Preisliste der vom Kunden zu zahlende Preis berechnet."""
         preisliste_check = self.preisliste.prüfe_Preisliste()
         rechnung = 0
         if einkauf == []:

@@ -228,3 +228,14 @@ def erfülle_Lieferung(self, bestellung, lagerbestand):
         return rechnung
 ```
 Der Funktion wird die Bestellung und der Lagerbestand des Kunden übergeben. Der Lieferant übergibt dem Lagerarbeiter die Bestellung, die dieser sogleich als fertie Lieferung zusammenstellt. Die Lieferung wird dann zur Bäckerei gebracht und dort eingelagert. Aus der Lieferung wird ein Rechnungsbetrag errechnet und dem Chef übersandt, die dieser bezahlt und daraufhin die Einzahlung in die Kasse auslöst.
+
+## Am meisten genutzte Tastenkombinationen in PyCharm
+
+Alt Enter: <br>
+Kontextmenü - immer dann nützlich, um Variablen oder Funktionen wiederzufinden, z.B. wenn man sich verschrieben hat oder Probleme mit der Sichtbarkeit bestehen. <br>
+<br>
+Alt F7: <br>
+Nach dem Überarbeiten einer Funktion kann man so schnell suchen, wo sie überall vorkommt, um zu überprüfen, ob etwas kaputt gegangen ist. <br>
+<br>
+Shift F6: <br>
+Dieser Shortcut hilft dabei, alle Variablen- / Funktionsnamen auf einmal umzubenennen. Wurde viel benutzt, um ein einheitliches Benennungsschema umzusetzen.

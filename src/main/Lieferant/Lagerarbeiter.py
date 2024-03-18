@@ -5,6 +5,7 @@ class Lagerarbeiter:
         self.lieferbestand = lieferbestand
 
     def stelle_Lieferung_zusammen(self, bestellung):
+        """Aus der Bestellung wird die Lieferung zusammengestellt."""
         if bestellung == []:
             raise ValueError("Eine zu erfüllende Bestellung kann nicht leer sein!")
         lieferung = []

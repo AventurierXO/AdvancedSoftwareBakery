@@ -12,6 +12,8 @@ class Lieferant:
         return self.__name
 
     def erfülle_Lieferung(self, bestellung, lagerbestand):
+        """Der Lieferant erfüllt die Bestellung durch das Zusammenstellen einer Lieferung, Erstellung einer Rechnung
+        und Lieferung an die Bäckerei."""
         if bestellung == []:
             raise ValueError("Eine leere Bestellung kann nicht erfüllt werden.")
         fertige_lieferung = self.lagerarbeiter.stelle_Lieferung_zusammen(bestellung)

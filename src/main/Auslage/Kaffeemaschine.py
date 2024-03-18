@@ -6,6 +6,7 @@ class Kaffeemaschine:
         return self.__getränke_optionen
 
     def mache_Getränk(self, getränke):
+        """Jedes Getränk in der Liste wird gemäß der Anzahl zubereitet und gibt eine Liste fertiger Getränke zurück."""
         if getränke == []:
             raise ValueError("Die Kaffeemaschine kann keine leere Bestellung annehmen!")
         fertige_getränke = []
