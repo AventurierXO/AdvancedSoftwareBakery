@@ -1,4 +1,5 @@
 import random
+from Verkaufsraum.BestellungBuilder import BestellungBuilder
 
 class Kunde:
     def __init__(self, name):
@@ -8,27 +9,17 @@ class Kunde:
         return self.__name
 
     def kauft_Backwaren(self, auslage, verkäufer):
-        # Die Bestellungen der Kunden werden zufällig generiert
-        bestellung = []
-        anzahl_versch_waren = random.randint(1,4)
-        liste_waren = auslage.schaue_Waren_an()
-        for anzahl in range(anzahl_versch_waren):
-            gewünschte_waren = random.choice(liste_waren)
-            anzahl_gewünschter_waren = random.randint(1, 4)
-            bestellung.append((gewünschte_waren, anzahl_gewünschter_waren))
-        verkäufer.verkaufe_Waren(bestellung)
+        """Eine Kundenbestellung für Backwaren wird generiert und an den Verkäufer zur Verarbeitung übergeben."""
+        bestellung = BestellungBuilder().Gebäckoptionen(auslage.schaue_Waren_an()).Backbestellung_erzeugen()
+        verkäufer.verkaufe_Waren(bestellung, self)
 
     def kauft_Heißgetränk(self, kaffeemaschine, verkäufer):
-        bestellung = []
-        anzahl_versch_waren = random.randint(1, 2)
-        liste_getränke = kaffeemaschine.schaut_Optionen_an()
-        for anzahl in range(anzahl_versch_waren):
-            gewünschte_waren = random.choice(liste_getränke)
-            anzahl_gewünschter_waren = random.randint(1, 2)
-            bestellung.append((gewünschte_waren, anzahl_gewünschter_waren))
-        verkäufer.verkaufe_Getränke(bestellung)
+        """Eine Kundenbestellung für Getränke wird generiert und an den Verkäufer zur Verarbeitung übergeben."""
+        bestellung = BestellungBuilder().Getränkeoptionen(kaffeemaschine.schaue_Optionen_an()).Getränkebestellung_erzeugen()
+        verkäufer.verkaufe_Getränke(bestellung, self)
 
     def bezahlen(self, rechnung):
+        """Der Kunde bezahlt eine übergebene Rechnung mit dem entsprechenden Betrag."""
         if rechnung <= 0:
             raise ValueError("Der zu bezahlende Betrag darf nicht 0 oder kleiner sein!")
         geldbetrag = rechnung
