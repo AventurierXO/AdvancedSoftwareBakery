@@ -1,5 +1,16 @@
 # AdvancedSoftwareBakery: Software-Projekt für Advanced Software Engineering
 
+## Wegweiser
+
+[Event Storming, Core Domain Chart, Domain Relation Chart, UML Diagramme & DSL Demo (Sequenzdiagramm für Verkauf von Backwaren)](https://github.com/AventurierXO/AdvancedSoftwareBakery/tree/main/Diagramme) <br>
+[CCD Cheat Sheet und Erfahrungen](https://github.com/AventurierXO/AdvancedSoftwareBakery/tree/main/CCD)<br>
+[Main: Domains](https://github.com/AventurierXO/AdvancedSoftwareBakery/tree/main/src/main) <br>
+[Fluent Interface Anwendung](https://github.com/AventurierXO/AdvancedSoftwareBakery/blob/main/src/main/Verkaufsraum/BestellungBuilder.py) <br>
+[Build](https://github.com/AventurierXO/mavendemo) <br>
+[Continuous Delivery](https://github.com/AventurierXO/AdvancedSoftwareBakery/blob/main/pyproject.toml) <br>
+[Unit-Tests](https://github.com/AventurierXO/AdvancedSoftwareBakery/tree/main/tests) <br>
+Dokumentation und Lieblings-Shortcuts hierunter
+
 ## Beschreibung des Projekts
 
 Dieses Projekt ist ein Management-System für eine imaginäre Bäckerei.
@@ -50,33 +61,20 @@ Bei der Klasse Kunde handelt es sich um eine sehr generische Klasse, die ledigli
 
 ```
 def kauft_Backwaren(self, auslage, verkäufer):
-	bestellung = []
-        anzahl_versch_waren = random.randint(1,4)
-        liste_waren = auslage.schaue_Waren_an()
-        for anzahl in range(anzahl_versch_waren):
-            gewünschte_waren = random.choice(liste_waren)
-            anzahl_gewünschter_waren = random.randint(1, 4)
-            bestellung.append((gewünschte_waren, anzahl_gewünschter_waren))
-        verkäufer.verkaufe_Waren(bestellung)
+        bestellung = BestellungBuilder().Gebäckoptionen(auslage.schaue_Waren_an()).Backbestellung_erzeugen()
+        verkäufer.verkaufe_Waren(bestellung, self)
 ```
-Beim Aufruf der Funktion wird ein Akteur von der Klasse Verkäufer_in und ein Objekt der Klasse Auslage_Tresen zugeordnet. Per Zufall wird eine Bestellung generiert, die alle möglichen Backwaren der Auslage enthalten kann. Dazu wird zunächst zufällig bestimmt, wie viele verschiedene Waren bestellt werden. In Abhängigkeit von der Anzahl werden eine oder mehrere Bestellungen genriert, die dann als Tupel in die Bestellung angehängt wird. <br>
+Beim Aufruf der Funktion wird ein Akteur von der Klasse Verkäufer_in und ein Objekt der Klasse Auslage_Tresen zugeordnet. Per Zufall wird mit Hilfe des Bestellungsbuilders eine Bestellung generiert, die alle möglichen Backwaren der Auslage enthalten kann. Dazu wird zunächst zufällig bestimmt, wie viele verschiedene Waren bestellt werden. In Abhängigkeit von der Anzahl werden eine oder mehrere Bestellungen genriert, die dann als Tupel in die Bestellung angehängt wird. <br>
 Nachdem die Liste bestellter Waren fertig generiert ist, wird sie dem zugeordneten Verkäufer übergeben und sein Verkaufsprozess wird gestartet. <br>
 
 #### Bestellung von Getränken:
 
 ```
 def kauft_Heißgetränk(self, kaffeemaschine, verkäufer):
-        bestellung = []
-        anzahl_versch_waren = random.randint(1, 2)
-        liste_getränke = kaffeemaschine.schaut_Optionen_an()
-        for anzahl in range(anzahl_versch_waren):
-            gewünschte_waren = random.choice(liste_getränke)
-            anzahl_gewünschter_waren = random.randint(1, 2)
-            bestellung.append((gewünschte_waren, anzahl_gewünschter_waren))
-        verkäufer.verkaufe_Getränke(bestellung)
+        bestellung = BestellungBuilder().Getränkeoptionen(kaffeemaschine.schaue_Optionen_an()).Getränkebestellung_erzeugen()
+        verkäufer.verkaufe_Getränke(bestellung, self)
 ```
-Dieser Funktion wird wieder ein Akteur von der Klasse Verkäufer_in und ein Objektder Klasse Kaffeemaschine zugeordnet. Ähnlich zu der Backwarenbestellung wird wieder per Zufall die Menge der verschiedenen Waren und eine Anzahl einer bestellten Ware gezogen. <br>
-Wie zuvor auch wird die Bestellung abhängig von der Anzahl der Teilbestellungen generiert und als Tupel in der Bestellung gespeichert. Diese Bestellung wird dann dem zugeordneten Verkäufer übergeben und der Prozess des Verkaufes wird gestartet.
+Dieser Funktion wird wieder ein Akteur von der Klasse Verkäufer_in und ein Objektder Klasse Kaffeemaschine zugeordnet. Ähnlich zu der Backwarenbestellung wird wieder der Bestellungsbuilder verwendet, um eine zufällige Bestellung von Getränken zu erzeugen. Diese Bestellung wird dann dem zugeordneten Verkäufer übergeben und der Prozess des Verkaufes wird gestartet.
 
 #### Bezahlung einer Rechnung:
 
