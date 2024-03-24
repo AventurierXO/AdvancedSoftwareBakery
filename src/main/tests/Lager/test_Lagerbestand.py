@@ -5,17 +5,17 @@ from Lager.Lagerbestand import Lagerbestand
 dummy_lagerbestand1 = {
         "Roggenmischbrot": 50,
         "Pfannkuchen": 50,
-        "Kürbiskernbrötchen": 0
+        "Kuerbiskernbroetchen": 0
     }
 dummy_lagerbestand2 = {
         "Roggenmischbrot": 50,
         "Pfannkuchen": 50,
-        "Kürbiskernbrötchen": 50
+        "Kuerbiskernbroetchen": 50
     }
 
 dummy_lagerbestand3 = {
     "Weizensemmel": 50,
-    "Kürbiskernbrötchen": 50,
+    "Kuerbiskernbroetchen": 50,
     "Roggenmischbrot": 0,
     "Vollkornbrot": 50,
     "Dinkelbrot": 0,
@@ -30,45 +30,47 @@ dummy_lagerbestand3 = {
     "Hefe": 50,
     "Butter": 50,
     "Wasser": 50,
-    "Kürbiskerne": 50
+    "Kuerbiskerne": 50
 }
 
 test_bestand1 = Lagerbestand(dummy_lagerbestand1)
 test_bestand2 = Lagerbestand(dummy_lagerbestand2)
 test_bestand3 = Lagerbestand(dummy_lagerbestand3)
 
-def test_prüft_fehlende_Waren():
-    assert test_bestand3.prüfe_fehlende_Waren() == ["Roggenmischbrot", "Dinkelbrot", "Bienenstich"]
-    assert test_bestand3.prüfe_fehlende_Waren(back = False) == ["Mehl", "Eier"]
+def test_prueft_fehlende_waren_korrekt():
+    assert test_bestand3.pruefe_fehlende_waren() == ["Roggenmischbrot", "Dinkelbrot", "Bienenstich"]
+    assert test_bestand3.pruefe_fehlende_waren(back = True) == ["Roggenmischbrot", "Dinkelbrot", "Bienenstich"]
+    assert test_bestand3.pruefe_fehlende_waren(back = False) == ["Mehl", "Eier"]
 
-def test_wird_gelagert():
-    einzulagern1 = []
-    einzulagern2 = ["Kürbiskernbrötchen"]
-    einzulagern3 = ["Unsinnskuchen"]
+def test_lagere_ein_korrekt():
+    check_bestand = test_bestand1.pruefe_bestand()
+    test_bestand1.lagere_ein(["Kuerbiskernbroetchen"])
+    assert check_bestand["Kuerbiskernbroetchen"] == 50
 
-    check_bestand = test_bestand1.prüfe_Bestand()
+def test_lagere_ein_leere_lieferung():
+    with pytest.raises(ValueError) as valueerror:
+        test_bestand1.lagere_ein([])
+    assert str(valueerror.value) == "Eine Liste einzulagernder Waren darf nicht leer sein!"
 
-    with pytest.raises(ValueError):
-        assert test_bestand1.lagere_ein(einzulagern1)
-    test_bestand1.lagere_ein(einzulagern2)
-    assert check_bestand["Kürbiskernbrötchen"] == 50
-    with pytest.raises(KeyError):
-        assert test_bestand1.lagere_ein(einzulagern3)
+def test_lagere_ein_falsche_ware():
+    with pytest.raises(KeyError) as keyerror:
+        test_bestand1.lagere_ein(["Unsinnskuchen"])
+    assert str(keyerror.value) == "'Die Ware gibt es im Lager nicht.'"
 
-def test_wird_aus_dem_Lager_genommen():
-    test_waren1 = []
-    test_waren2 = ["Roggenmischbrot", "Pfannkuchen"]
-    test_waren3 = ["Kürbiskernbrötchen", "Fakekuchen"]
+def test_wird_aus_dem_lager_genommen_korrekt():
+    assert test_bestand1.nimm_aus_dem_lager(["Roggenmischbrot", "Pfannkuchen"]) == ["Roggenmischbrot", "Pfannkuchen"]
 
-    anzahl1 = 0
-    anzahl2 = 51
+def test_wird_aus_dem_lager_genommen_falsche_ware():
+    with pytest.raises(KeyError) as keyerror:
+        test_bestand1.nimm_aus_dem_lager(["Fakekuchen"])
+    assert str(keyerror.value) == "'Die Ware gibt es im Lager nicht.'"
 
-    with pytest.raises(ValueError):
-        assert test_bestand1.nimm_aus_dem_Lager(test_waren1)
-    assert test_bestand1.nimm_aus_dem_Lager(test_waren2) == ["Roggenmischbrot", "Pfannkuchen"]
-    with pytest.raises(KeyError):
-        assert test_bestand1.nimm_aus_dem_Lager(test_waren3) == ["Kürbiskernbrötchen"]
-    with pytest.raises(ValueError):
-        assert test_bestand1.nimm_aus_dem_Lager(test_waren2, anzahl1)
-    with pytest.raises(ValueError):
-        assert test_bestand1.nimm_aus_dem_Lager(test_waren2, anzahl2)
+def test_nimm_aus_dem_lager_anzahl_0():
+    with pytest.raises(ValueError) as valueerror:
+        test_bestand1.nimm_aus_dem_lager(["Roggenmischbrot"], 0)
+    assert str(valueerror.value) == "Es muss mindestens ein Stueck der Ware aus dem Lager geholt werden bzw. nicht mehr als 50!"
+
+def test_nimm_aus_dem_lager_anzahl_51():
+    with pytest.raises(ValueError) as valueerror:
+        test_bestand1.nimm_aus_dem_lager(["Roggenmischbrot"], 51)
+    assert str(valueerror.value) == "Es muss mindestens ein Stueck der Ware aus dem Lager geholt werden bzw. nicht mehr als 50!"

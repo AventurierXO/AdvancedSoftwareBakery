@@ -116,7 +116,7 @@
 						<line number="7" hits="1"/>
 					</lines>
 				</class>
-				<class name="Verkäufer_in.py" filename="Auslage/Verkäufer_in.py" complexity="0" line-rate="0.9459" branch-rate="0">
+				<class name="Verkaeufer.py" filename="Auslage/Verkaeufer.py" complexity="0" line-rate="0.9459" branch-rate="0">
 					<methods/>
 					<lines>
 						<line number="1" hits="1"/>
@@ -166,7 +166,7 @@
 		</package>
 		<package name="Backstube" line-rate="0.8889" branch-rate="0" complexity="0">
 			<classes>
-				<class name="Bäcker_in.py" filename="Backstube/Bäcker_in.py" complexity="0" line-rate="0.875" branch-rate="0">
+				<class name="Baecker.py" filename="Backstube/Baecker.py" complexity="0" line-rate="0.875" branch-rate="0">
 					<methods/>
 					<lines>
 						<line number="1" hits="1"/>
@@ -227,9 +227,9 @@
 				</class>
 			</classes>
 		</package>
-		<package name="Büro" line-rate="0.9796" branch-rate="0" complexity="0">
+		<package name="Buero" line-rate="0.9796" branch-rate="0" complexity="0">
 			<classes>
-				<class name="Angestellte.py" filename="Büro/Angestellte.py" complexity="0" line-rate="1" branch-rate="0">
+				<class name="Angestellte.py" filename="Buero/Angestellte.py" complexity="0" line-rate="1" branch-rate="0">
 					<methods/>
 					<lines>
 						<line number="1" hits="1"/>
@@ -244,7 +244,7 @@
 						<line number="13" hits="1"/>
 					</lines>
 				</class>
-				<class name="Chef.py" filename="Büro/Chef.py" complexity="0" line-rate="0.9744" branch-rate="0">
+				<class name="Chef.py" filename="Buero/Chef.py" complexity="0" line-rate="0.9744" branch-rate="0">
 					<methods/>
 					<lines>
 						<line number="1" hits="1"/>
@@ -288,7 +288,7 @@
 						<line number="52" hits="1"/>
 					</lines>
 				</class>
-				<class name="__init__.py" filename="Büro/__init__.py" complexity="0" line-rate="1" branch-rate="0">
+				<class name="__init__.py" filename="Buero/__init__.py" complexity="0" line-rate="1" branch-rate="0">
 					<methods/>
 					<lines/>
 				</class>
@@ -593,7 +593,7 @@
 						<line number="50" hits="1"/>
 					</lines>
 				</class>
-				<class name="test_Verkäufer_in.py" filename="tests/Auslage/test_Verkäufer_in.py" complexity="0" line-rate="1" branch-rate="0">
+				<class name="test_Verkaeufer.py" filename="tests/Auslage/test_Verkaeufer.py" complexity="0" line-rate="1" branch-rate="0">
 					<methods/>
 					<lines>
 						<line number="1" hits="1"/>
@@ -666,7 +666,7 @@
 		</package>
 		<package name="tests.Backstube" line-rate="1" branch-rate="0" complexity="0">
 			<classes>
-				<class name="test_Bäcker_in.py" filename="tests/Backstube/test_Bäcker_in.py" complexity="0" line-rate="1" branch-rate="0">
+				<class name="test_Baecker.py" filename="tests/Backstube/test_Baecker.py" complexity="0" line-rate="1" branch-rate="0">
 					<methods/>
 					<lines>
 						<line number="1" hits="1"/>
@@ -742,9 +742,9 @@
 				</class>
 			</classes>
 		</package>
-		<package name="tests.Büro" line-rate="1" branch-rate="0" complexity="0">
+		<package name="tests.Buero" line-rate="1" branch-rate="0" complexity="0">
 			<classes>
-				<class name="test_Chef.py" filename="tests/Büro/test_Chef.py" complexity="0" line-rate="1" branch-rate="0">
+				<class name="test_Chef.py" filename="tests/Buero/test_Chef.py" complexity="0" line-rate="1" branch-rate="0">
 					<methods/>
 					<lines>
 						<line number="1" hits="1"/>

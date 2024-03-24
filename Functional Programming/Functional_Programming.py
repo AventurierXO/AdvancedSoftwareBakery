@@ -2,14 +2,14 @@
 Funktionen ohne Seiteneffekte: alle
 Higher-Order functions: closure_Fibonacci()
 Funktionen als Parameter und return values:
-    closure_Fibonacci() - gibt Funktion berechne_Fib_Zahl() zurück
+    closure_Fibonacci() - gibt Funktion berechne_Fib_Zahl() zurueck
     anonyme_Differentiation() - Parameter f ist eine Funktion (siehe Test-Datei)
 Nutzung closure Funktion: closure_Fibonacci()
 Nutzung anonymer Funktion: anonyme_Differentiation()
 """
 
 def closure_Fibonacci():
-    """Diese Funktion generiert mit jedem wiederholten Call die nächste Fibonacci-Zahl."""
+    """Diese Funktion generiert mit jedem wiederholten Call die naechste Fibonacci-Zahl."""
     num1 = 0
     num2 = 0
     def berechne_Fib_Zahl():
@@ -26,7 +26,7 @@ def closure_Fibonacci():
     return berechne_Fib_Zahl
 
 def berechne_Fib_Summe(n):
-    """Diese Funktion gibt die Summe der generierten Fibonacci-Zahlen bis zur n-ten Fibonacci-Zahl zurück."""
+    """Diese Funktion gibt die Summe der generierten Fibonacci-Zahlen bis zur n-ten Fibonacci-Zahl zurueck."""
     if n < 0:
         raise ValueError("Es gibt nur n-te Fibonacci-Zahlen >= 0! n darf nicht negativ sein!")
     fib = closure_Fibonacci()
@@ -36,6 +36,6 @@ def berechne_Fib_Summe(n):
     return(sum(fib_list))
 
 def anonyme_Differentiation(f, a, h = 0.00001):
-    """Diese Funktion berechnet die lokale Ableitung einer Funktion f für die Stelle a."""
+    """Diese Funktion berechnet die lokale Ableitung einer Funktion f fuer die Stelle a."""
     diff = lambda h: (f(a + h) - f(a)) / h
     return diff(h)

@@ -3,5 +3,5 @@ class Lieferbestand:
     def __init__(self, bestand):
         self.__bestand = bestand
 
-    def prüfe_Bestand(self):
+    def pruefe_bestand(self):
         return self.__bestand

@@ -5,7 +5,7 @@ from Auslage.Kaffeemaschine import Kaffeemaschine
 
 auslage = {
     "Weizensemmel": 50,
-    "Kürbiskernbrötchen": 50,
+    "Kuerbiskernbroetchen": 50,
     "Roggenmischbrot": 50,
     "Vollkornbrot": 50,
     "Dinkelbrot": 50,
@@ -15,14 +15,14 @@ auslage = {
     "Pfannkuchen": 50
 }
 
-getränkeoptionen = ["Pot Kaffee", "Tasse Kaffee", "Latte Macchiato", "Cappucino", "Espresso", "Heiße Schokolade"]
+getraenkeoptionen = ["Pot Kaffee", "Tasse Kaffee", "Latte Macchiato", "Cappucino", "Espresso", "Heisse Schokolade"]
 
 testauslage = Auslage_Tresen(auslage)
-testkaffeemaschine = Kaffeemaschine(getränkeoptionen)
-def test_Gebäckbestellung_erzeugen():
-    bestellung = BestellungBuilder().Gebäckoptionen(testauslage.schaue_Waren_an()).Backbestellung_erzeugen()
+testkaffeemaschine = Kaffeemaschine(getraenkeoptionen)
+def test_Gebaeckbestellung_erzeugen():
+    bestellung = BestellungBuilder().gebaeckoptionen(testauslage.schaue_waren_an()).backbestellung_erzeugen()
     assert bestellung != []
 
-def test_Getränkebestellung_erzeugen():
-    bestellung = BestellungBuilder().Getränkeoptionen(testkaffeemaschine.schaue_Optionen_an()).Getränkebestellung_erzeugen()
+def test_getraenkebestellung_erzeugen():
+    bestellung = BestellungBuilder().getraenkeoptionen(testkaffeemaschine.schaue_optionen_an()).getraenkebestellung_erzeugen()
     assert bestellung != []

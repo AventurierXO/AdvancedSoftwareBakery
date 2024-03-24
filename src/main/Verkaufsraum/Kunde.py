@@ -5,21 +5,21 @@ class Kunde:
     def __init__(self, name):
         self.__name = name
 
-    def gibt_Name(self):
+    def gebe_namen_an(self):
         return self.__name
 
-    def kauft_Backwaren(self, auslage, verkäufer):
-        """Eine Kundenbestellung für Backwaren wird generiert und an den Verkäufer zur Verarbeitung übergeben."""
-        bestellung = BestellungBuilder().Gebäckoptionen(auslage.schaue_Waren_an()).Backbestellung_erzeugen()
-        verkäufer.verkaufe_Waren(bestellung, self)
+    def kauft_backwaren(self, auslage, verkaeufer):
+        """Eine Kundenbestellung fuer Backwaren wird generiert und an den Verkaeufer zur Verarbeitung uebergeben."""
+        bestellung = BestellungBuilder().gebaeckoptionen(auslage.schaue_waren_an()).backbestellung_erzeugen()
+        verkaeufer.verkaufe_Waren(bestellung, self)
 
-    def kauft_Heißgetränk(self, kaffeemaschine, verkäufer):
-        """Eine Kundenbestellung für Getränke wird generiert und an den Verkäufer zur Verarbeitung übergeben."""
-        bestellung = BestellungBuilder().Getränkeoptionen(kaffeemaschine.schaue_Optionen_an()).Getränkebestellung_erzeugen()
-        verkäufer.verkaufe_Getränke(bestellung, self)
+    def kauft_heissgetraenk(self, kaffeemaschine, verkaeufer):
+        """Eine Kundenbestellung fuer Getraenke wird generiert und an den Verkaeufer zur Verarbeitung uebergeben."""
+        bestellung = BestellungBuilder().getraenkeoptionen(kaffeemaschine.schaue_optionen_an()).getraenkebestellung_erzeugen()
+        verkaeufer.verkaufe_getraenke(bestellung, self)
 
     def bezahlen(self, rechnung):
-        """Der Kunde bezahlt eine übergebene Rechnung mit dem entsprechenden Betrag."""
+        """Der Kunde bezahlt eine uebergebene Rechnung mit dem entsprechenden Betrag."""
         if rechnung <= 0:
             raise ValueError("Der zu bezahlende Betrag darf nicht 0 oder kleiner sein!")
         geldbetrag = rechnung

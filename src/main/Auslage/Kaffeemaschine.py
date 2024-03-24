@@ -1,18 +1,18 @@
 class Kaffeemaschine:
-    def __init__(self, getränke_optionen):
-        self.__getränke_optionen = getränke_optionen
+    def __init__(self, getraenke_optionen):
+        self.__getraenke_optionen = getraenke_optionen
 
-    def schaue_Optionen_an(self):
-        return self.__getränke_optionen
+    def schaue_optionen_an(self):
+        return self.__getraenke_optionen
 
-    def mache_Getränk(self, getränke):
-        """Jedes Getränk in der Liste wird gemäß der Anzahl zubereitet und gibt eine Liste fertiger Getränke zurück."""
-        if getränke == []:
+    def mache_getraenk(self, getraenke):
+        """Jedes Getraenk in der Liste wird gemaess der Anzahl zubereitet und gibt eine Liste fertiger Getraenke zurueck."""
+        if getraenke == []:
             raise ValueError("Die Kaffeemaschine kann keine leere Bestellung annehmen!")
-        fertige_getränke = []
-        for getränk in getränke:
-            if (getränk[0] in self.__getränke_optionen) & (getränk[1] > 0):
-                fertige_getränke.append(getränk)
+        fertige_getraenke = []
+        for getraenk in getraenke:
+            if (getraenk[0] in self.__getraenke_optionen) & (getraenk[1] > 0):
+                fertige_getraenke.append(getraenk)
             else:
-                raise ValueError(f"Dieses Getränk kann die Kaffeemaschine nicht zubereiten!")
-        return fertige_getränke
+                raise ValueError("Diese Bestellung kann die Kaffeemaschine nicht zubereiten (falsches Getränk oder Anzahl)!")
+        return fertige_getraenke

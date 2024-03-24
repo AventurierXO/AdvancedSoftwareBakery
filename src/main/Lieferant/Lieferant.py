@@ -8,18 +8,20 @@ class Lieferant:
         self.lagerarbeiter = lagerarbeiter
         self.kasse = kasse
 
-    def gibt_Namen_an(self):
+    def gebe_namen_an(self):
         return self.__name
 
-    def erfülle_Lieferung(self, bestellung, lagerbestand):
-        """Der Lieferant erfüllt die Bestellung durch das Zusammenstellen einer Lieferung, Erstellung einer Rechnung
-        und Lieferung an die Bäckerei."""
+    def erfuelle_lieferung(self, bestellung, lagerbestand):
+        """Der Lieferant erfuellt die Bestellung durch das Zusammenstellen einer Lieferung, Erstellung einer Rechnung
+        und Lieferung an die Baeckerei."""
         if bestellung == []:
-            raise ValueError("Eine leere Bestellung kann nicht erfüllt werden.")
-        fertige_lieferung = self.lagerarbeiter.stelle_Lieferung_zusammen(bestellung)
+            raise ValueError("Eine leere Bestellung kann nicht erfuellt werden.")
+        fertige_lieferung = self.lagerarbeiter.stelle_lieferung_zusammen(bestellung)
         lagerbestand.lagere_ein(fertige_lieferung)
-        rechnung = self.kasse.erstelle_Rechnung_Lieferung(fertige_lieferung)
+        rechnung = self.kasse.erstelle_rechnung_lieferung(fertige_lieferung)
         return rechnung
 
-    def kassiere_Geld_ein(self, geld):
-        self.kasse.zahle_Geld_ein(geld)
+    def kassiere_geld_ein(self, geld):
+        if geld <= 0:
+            raise ValueError("Der eingenommene Geldbetrag kann nicht kleiner gleich 0 sein!")
+        self.kasse.zahle_geld_ein(geld)

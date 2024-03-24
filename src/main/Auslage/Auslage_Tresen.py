@@ -1,17 +1,17 @@
-"""Klasse Auslage_Tresen: Hält Funktionen, die es ermöglichen mit der Auslage zu interagieren"""
+"""Klasse Auslage_Tresen: Haelt Funktionen, die es ermoeglichen mit der Auslage zu interagieren"""
 class Auslage_Tresen:
     def __init__(self, auslage):
         self.__auslage = auslage
 
-    def prüfe_Bestand(self):
+    def pruefe_bestand(self):
         return self.__auslage
 
-    def schaue_Waren_an(self):
+    def schaue_waren_an(self):
         return list(self.__auslage.keys())
 
-    def erfasse_fehlende_Backwaren(self):
-        """Die Auslage wird nach Backwaren untersucht, die eine Stückzahl <50 aufweisen und gibt diese in einer Liste zurück."""
-        auslage = self.prüfe_Bestand()
+    def erfasse_fehlende_backwaren(self):
+        """Die Auslage wird nach Backwaren untersucht, die eine Stueckzahl <50 aufweisen und gibt diese in einer Liste zurueck."""
+        auslage = self.pruefe_bestand()
         fehlende_backwaren = []
         for backware in auslage:
             if auslage[backware] < 50:
@@ -21,17 +21,19 @@ class Auslage_Tresen:
         return fehlende_backwaren
 
 
-    def entnehme_Backwerk(self, wunschwaren):
-        """Für jedes Element in der übergebenen Liste werden die Backwaren in der geforderten Anzahl entnommen, wenn genug vorhanden sind."""
+    def entnehme_backwerk(self, wunschwaren):
+        """Fuer jedes Element in der uebergebenen Liste werden die Backwaren in der geforderten Anzahl entnommen, wenn genug vorhanden sind."""
         if wunschwaren == []:
             raise ValueError("Die Liste der zu entnehmenden Waren kann nicht leer sein!")
         einkauf = []
-        auslage = self.prüfe_Bestand()
+        auslage = self.pruefe_bestand()
         for teilbestellung in wunschwaren:
             backware = teilbestellung[0]
             anzahl = teilbestellung[1]
+            if backware not in list(auslage.keys()):
+                raise KeyError("Die Backware gibt es in der Auslage nicht.")
             if anzahl == 0:
-                raise ValueError("Es können nicht 0 Backwerke entnommen werden!")
+                raise ValueError("Es koennen nicht 0 Backwerke entnommen werden!")
             if auslage[backware] <= anzahl:
                 raise ValueError(f"Es sind nicht genug Teile {backware} vorhanden.")
             else:
@@ -41,11 +43,11 @@ class Auslage_Tresen:
             raise ValueError("Wenn der Einkauf leer ist, braucht er nicht weiter verarbeitet zu werden.")
         return einkauf
 
-    def fülle_Bestand_nach(self, lieferung):
-        """Die Auslage wird mit jeder Backwerksorte in der Lieferung um 50 aufgefüllt."""
+    def fuelle_bestand_nach(self, lieferung):
+        """Die Auslage wird mit jeder Backwerksorte in der Lieferung um 50 aufgefuellt."""
         if lieferung == []:
-            raise ValueError("Um die Auslage befüllen zu können, muss die Lieferung Backwerke enthalten!")
-        auslage = self.prüfe_Bestand()
+            raise ValueError("Um die Auslage befuellen zu koennen, muss die Lieferung Backwerke enthalten!")
+        auslage = self.pruefe_bestand()
         for teil in lieferung:
             if teil not in list(auslage.keys()):
                 raise KeyError("Die Backware gibt es in der Auslage nicht.")

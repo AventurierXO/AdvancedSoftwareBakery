@@ -3,7 +3,7 @@ from Auslage.Auslage_Tresen import Auslage_Tresen
 
 auslage1_basis = {
     "Weizensemmel": 50,
-    "Kürbiskernbrötchen": 50,
+    "Kuerbiskernbroetchen": 50,
     "Roggenmischbrot": 50,
     "Vollkornbrot": 50,
     "Dinkelbrot": 50,
@@ -15,7 +15,7 @@ auslage1_basis = {
 
 auslage2_basis = {
     "Weizensemmel": 50,
-    "Kürbiskernbrötchen": 50,
+    "Kuerbiskernbroetchen": 50,
     "Roggenmischbrot": 0,
     "Vollkornbrot": 0,
     "Dinkelbrot": 50,
@@ -29,35 +29,53 @@ test_auslage1 = Auslage_Tresen(auslage1_basis)
 test_auslage2 = Auslage_Tresen(auslage2_basis)
 
 def test_erfasse_fehlende_backwaren():
-    backwaren = test_auslage2.erfasse_fehlende_Backwaren()
-    assert backwaren == ["Roggenmischbrot", "Vollkornbrot"]
+    test_backwaren = test_auslage2.erfasse_fehlende_backwaren()
+    assert test_backwaren == ["Roggenmischbrot", "Vollkornbrot"]
 
-def test_entnehme_backwerk():
-    assert test_auslage1.entnehme_Backwerk([("Roggenmischbrot", 2), ("Kürbiskernbrötchen", 2)]) == [
-        ("Roggenmischbrot", 2), ("Kürbiskernbrötchen", 2)]
-    test_auslage1_save = test_auslage1.prüfe_Bestand()
+def test_entnehme_backwerk_korrekt():
+    assert test_auslage1.entnehme_backwerk([("Roggenmischbrot", 2), ("Kuerbiskernbroetchen", 2)]) == [
+        ("Roggenmischbrot", 2), ("Kuerbiskernbroetchen", 2)]
+    test_auslage1_save = test_auslage1.pruefe_bestand()
     assert test_auslage1_save["Roggenmischbrot"] == 48
-    assert test_auslage1_save["Kürbiskernbrötchen"] == 48
-    with pytest.raises(ValueError):
-        assert test_auslage1.entnehme_Backwerk([])
-    with pytest.raises(KeyError):
-        assert test_auslage1.entnehme_Backwerk([("Kartoffelbrot", 3)])
-    with pytest.raises(ValueError):
-        assert test_auslage1.entnehme_Backwerk([("Roggenmischbrot", 0)])
-    with pytest.raises(ValueError):
-        assert test_auslage1.entnehme_Backwerk([("Roggenmischbrot", 51)])
+    assert test_auslage1_save["Kuerbiskernbroetchen"] == 48
 
-def test_fülle_bestand_nach():
-    lieferung1 = []
-    lieferung2 = ["Roggenmischbrot", "Vollkornbrot"]
-    lieferung3 = ["Fakekuchen"]
+def test_entnehme_backwerk_leere_bestellung():
+    with pytest.raises(ValueError) as valueerror:
+        test_auslage1.entnehme_backwerk([])
+    assert str(valueerror.value) == "Die Liste der zu entnehmenden Waren kann nicht leer sein!"
 
-    check_auslage = test_auslage2.prüfe_Bestand()
-    with pytest.raises(ValueError):
-        assert test_auslage2.fülle_Bestand_nach(lieferung1)
-    test_auslage2.fülle_Bestand_nach(lieferung2)
+def test_entnehme_backwerk_nicht_vorhandenes_gebaeck():
+    with pytest.raises(KeyError) as keyerror:
+        test_auslage1.entnehme_backwerk([("Kartoffelbrot", 3)])
+    assert str(keyerror.value) == "'Die Backware gibt es in der Auslage nicht.'"
+
+def test_entnehme_backwerk_anzahl_0():
+    with pytest.raises(ValueError) as valueerror:
+        test_auslage1.entnehme_backwerk([("Roggenmischbrot", 0)])
+    assert str(valueerror.value) == "Es koennen nicht 0 Backwerke entnommen werden!"
+
+def test_entnehme_backwerk_anzahl_groesser_50():
+    with pytest.raises(ValueError) as valueerror:
+        test_auslage1.entnehme_backwerk([("Roggenmischbrot", 51)])
+    assert str(valueerror.value) == "Es sind nicht genug Teile Roggenmischbrot vorhanden."
+
+def test_fuelle_bestand_nach_korrekt():
+    test_lieferung = ["Roggenmischbrot", "Vollkornbrot"]
+
+    check_auslage = test_auslage2.pruefe_bestand()
+    test_auslage2.fuelle_bestand_nach(test_lieferung)
     assert check_auslage["Roggenmischbrot"] == 50
     assert check_auslage["Vollkornbrot"] == 50
-    with pytest.raises(KeyError):
-        assert test_auslage2.fülle_Bestand_nach(lieferung3)
+
+def test_fuelle_bestand_nach_falsche_backware():
+    test_lieferung = ["Fakekuchen"]
+    with pytest.raises(KeyError) as keyerror:
+        test_auslage2.fuelle_bestand_nach(test_lieferung)
+    assert str(keyerror.value) == "'Die Backware gibt es in der Auslage nicht.'"
+
+def test_fuelle_bestand_nach_leere_lieferung():
+    test_lieferung = []
+    with pytest.raises(ValueError) as valueerror:
+        test_auslage1.fuelle_bestand_nach(test_lieferung)
+    assert str(valueerror.value) == "Um die Auslage befuellen zu koennen, muss die Lieferung Backwerke enthalten!"
 

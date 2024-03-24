@@ -2,29 +2,29 @@ import random
 
 class BestellungBuilder:
 
-    def Gebäckoptionen(self, gebäcke):
-        self.gebäcke = gebäcke
+    def gebaeckoptionen(self, gebaecke):
+        self.gebaecke = gebaecke
         return self
 
-    def Getränkeoptionen(self, getränke):
-        self.getränke = getränke
+    def getraenkeoptionen(self, getraenke):
+        self.getraenke = getraenke
         return self
 
-    def Backbestellung_erzeugen(self):
+    def backbestellung_erzeugen(self):
         bestellung = []
-        # Die Bestellungen der Kunden werden zufällig generiert
+        # Die Bestellungen der Kunden werden zufaellig generiert
         anzahl_versch_waren = random.randint(1, 4)
         for anzahl in range(anzahl_versch_waren):
-            gewünschte_waren = random.choice(self.gebäcke)
-            anzahl_gewünschter_waren = random.randint(1, 4)
-            bestellung.append((gewünschte_waren, anzahl_gewünschter_waren))
+            gewuenschte_waren = random.choice(self.gebaecke)
+            anzahl_gewuenschter_waren = random.randint(1, 4)
+            bestellung.append((gewuenschte_waren, anzahl_gewuenschter_waren))
         return bestellung
 
-    def Getränkebestellung_erzeugen(self):
+    def getraenkebestellung_erzeugen(self):
         bestellung = []
         anzahl_versch_waren = random.randint(1, 2)
         for anzahl in range(anzahl_versch_waren):
-            gewünschte_waren = random.choice(self.getränke)
-            anzahl_gewünschter_waren = random.randint(1, 2)
-            bestellung.append((gewünschte_waren, anzahl_gewünschter_waren))
+            gewuenschte_waren = random.choice(self.getraenke)
+            anzahl_gewuenschter_waren = random.randint(1, 2)
+            bestellung.append((gewuenschte_waren, anzahl_gewuenschter_waren))
         return bestellung

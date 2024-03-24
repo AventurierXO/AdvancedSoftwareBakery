@@ -1,13 +1,13 @@
 @startuml
-title Sequenzdiagramm für den Verkauf von Backwaren
-actor Verkäufer
+title Sequenzdiagramm fuer den Verkauf von Backwaren
+actor Verkaeufer
 actor Kunde
-Kunde -> Verkäufer: gibt Bestellung auf
-Verkäufer -> Auslage: entnimmt Backwaren
-Auslage -> Verkäufer: gibt geforderte Backwaren zurück
-Verkäufer -> Kasse: erstellt Rechnung
-Kasse -> Verkäufer: gibt zu zahlenden Betrag zurück
-Verkäufer -> Kunde: fordert Betrag ein
-Kunde -> Verkäufer: bezahlt Betrag
-Verkäufer -> Kunde: Zahlt Betrag in Kasse ein
+Kunde -> Verkaeufer: gibt Bestellung auf
+Verkaeufer -> Auslage: entnimmt Backwaren
+Auslage -> Verkaeufer: gibt geforderte Backwaren zurueck
+Verkaeufer -> Kasse: erstellt Rechnung
+Kasse -> Verkaeufer: gibt zu zahlenden Betrag zurueck
+Verkaeufer -> Kunde: fordert Betrag ein
+Kunde -> Verkaeufer: bezahlt Betrag
+Verkaeufer -> Kunde: Zahlt Betrag in Kasse ein
 @enduml

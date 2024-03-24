@@ -1,13 +1,13 @@
 @startuml
-title Use Case Diagramm für die Klasse Verkäufer_in
+title Use Case Diagramm fuer die Klasse Verkaeufer
 
 left to right direction
 
 package Auslage{
-Actor Verkäufer_in as Verkäufer
+Actor Verkaeufer as Verkaeufer
 package Auslage_Tresen {
-usecase "Prüfe fehlende Backwaren" as Prüfung
-usecase "befülle Auslage mit gelieferten Waren" as Befüllen
+usecase "Pruefe fehlende Backwaren" as Pruefung
+usecase "befuelle Auslage mit gelieferten Waren" as Befuellen
 usecase "entnehme Backwaren" as Entnehmen
 }
 
@@ -20,23 +20,23 @@ usecase "Geld einzahlen" as Einzahlung
 package Verkaufsraum {
 Actor Kunde
 usecase "erhalte Backwaren-Bestellung" as Backwarenbestellung
-usecase "erhalte Getränke-Bestellung" as Getränkebestellung
+usecase "erhalte Getraenke-Bestellung" as Getraenkebestellung
 }
 
 package Backstube {
-Actor Bäcker_in
+Actor Baecker
 usecase "bestelle fehlende Backwaren" as Nachbestellung
 usecase "erhalte Bestellung fehlender Backwaren" as Erhalten
 }
 
-Verkäufer --> Prüfung
-Verkäufer --> Befüllen
-Verkäufer --> Entnehmen
-Verkäufer --> Rechnung
-Verkäufer --> Einzahlung
-Backwarenbestellung --> Verkäufer
-Getränkebestellung --> Verkäufer
-Verkäufer --> Nachbestellung
-Erhalten --> Verkäufer
+Verkaeufer --> Pruefung
+Verkaeufer --> Befuellen
+Verkaeufer --> Entnehmen
+Verkaeufer --> Rechnung
+Verkaeufer --> Einzahlung
+Backwarenbestellung --> Verkaeufer
+Getraenkebestellung --> Verkaeufer
+Verkaeufer --> Nachbestellung
+Erhalten --> Verkaeufer
 
 @enduml

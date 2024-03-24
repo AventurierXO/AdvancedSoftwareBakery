@@ -3,5 +3,5 @@ class Preisliste:
     def __init__(self, preisliste):
         self.__preisliste = preisliste
 
-    def prüfe_Preisliste(self):
+    def pruefe_preisliste(self):
         return self.__preisliste
