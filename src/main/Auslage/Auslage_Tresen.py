@@ -1,3 +1,4 @@
+"""Klasse Auslage_Tresen: Hält Funktionen, die es ermöglichen mit der Auslage zu interagieren"""
 class Auslage_Tresen:
     def __init__(self, auslage):
         self.__auslage = auslage
@@ -9,6 +10,7 @@ class Auslage_Tresen:
         return list(self.__auslage.keys())
 
     def erfasse_fehlende_Backwaren(self):
+        """Die Auslage wird nach Backwaren untersucht, die eine Stückzahl <50 aufweisen und gibt diese in einer Liste zurück."""
         auslage = self.prüfe_Bestand()
         fehlende_backwaren = []
         for backware in auslage:
@@ -20,6 +22,7 @@ class Auslage_Tresen:
 
 
     def entnehme_Backwerk(self, wunschwaren):
+        """Für jedes Element in der übergebenen Liste werden die Backwaren in der geforderten Anzahl entnommen, wenn genug vorhanden sind."""
         if wunschwaren == []:
             raise ValueError("Die Liste der zu entnehmenden Waren kann nicht leer sein!")
         einkauf = []
@@ -39,6 +42,7 @@ class Auslage_Tresen:
         return einkauf
 
     def fülle_Bestand_nach(self, lieferung):
+        """Die Auslage wird mit jeder Backwerksorte in der Lieferung um 50 aufgefüllt."""
         if lieferung == []:
             raise ValueError("Um die Auslage befüllen zu können, muss die Lieferung Backwerke enthalten!")
         auslage = self.prüfe_Bestand()
