@@ -1,4 +1,12 @@
 class Rezepte:
+    """
+    Diese Klasse repräsentiert Rezepte
+
+    Attribute:
+    ----------
+    rezepte: Dictionary
+        ein Dictionary von Backstücken mit den Zutaten, um sie zu backen
+    """
     def __init__(self, rezepte):
         self.__rezepte = rezepte
 

@@ -1,6 +1,14 @@
 from src.main.Lieferant import Lieferbestand
 
 class Lagerarbeiter:
+    """
+    Diese Klasse repräsentiert den Lagerarbeiter
+
+    Attribute:
+    ----------
+    lieferbestand: Objekt der Klasse Lieferbestand
+        Lieferbestand, auf den der Lagerarbeiter zugreifen kann
+    """
     def __init__(self, lieferbestand):
         self.lieferbestand = lieferbestand
 

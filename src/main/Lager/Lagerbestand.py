@@ -1,4 +1,12 @@
 class Lagerbestand:
+    """
+    Diese Klasse repräsentiert den Lagerbestand
+
+    Attribute:
+    ----------
+    bestand: Dictionary
+        der Bestand, der gelagert ist
+    """
     def __init__(self, bestand):
         self.__bestand = bestand
 

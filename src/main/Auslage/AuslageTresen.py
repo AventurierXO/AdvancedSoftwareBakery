@@ -1,5 +1,13 @@
 """Klasse AuslageTresen: Haelt Funktionen, die es ermoeglichen mit der Auslage zu interagieren"""
 class AuslageTresen:
+    """
+    Diese Klasse repräsentiert den Tresen einer Auslage
+
+    Attribute:
+    ----------
+    auslage: Dictionary
+        die Auslage, die im Tresen liegt und von der aus die Waren verkauft werden
+    """
     def __init__(self, auslage):
         self.__auslage = auslage
 

@@ -1,6 +1,16 @@
 from Auslage.Kasse import Kasse
 
 class KasseLieferant(Kasse):
+    """
+    Diese Klasse repräsentiert die Kasse des Lieferanten
+
+    Attribute:
+    ----------
+    geld: Integer
+        Geldbetrag, der sich in der Kasse befindet
+    preisliste: Objekt der Klasse PreislisteLieferant
+        Waren im Angebot des Lieferanten und die zugehörigen Preise
+    """
     def __init__(self, geld, preisliste):
         super().__init__(geld, preisliste)
 

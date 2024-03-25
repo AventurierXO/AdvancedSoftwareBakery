@@ -3,6 +3,22 @@ from Backstube.Baecker import Baecker
 from src.main.Buero.Angestellte import Angestellte
 
 class Chef(Angestellte):
+    """
+    Diese Klasse repräsentiert den Chef der Bäckerei
+
+    Attribute:
+    ----------
+    name: String
+        Name des Chefs
+    lohn: Integer
+        Lohn des Chefs
+    lagerbestand: Objekt der Klasse Lagerbestand
+        der Lagerbestand, auf den der Chef zugreifen kann
+    lieferant: Objekt der Klasse Lieferant
+        der Lieferant, bei dem der Chef bestellen kann
+    angestellte: Dictionary
+        eine Übersicht der Angestellten der Bäckerei und ihrem Lohn
+    """
     def __init__(self, name, lohn, lagerbestand, lieferant, angestellte):
         self.lagerbestand = lagerbestand
         self.lieferant = lieferant

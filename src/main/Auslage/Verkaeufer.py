@@ -1,8 +1,23 @@
 from src.main import Auslage
 from src.main.Buero.Angestellte import Angestellte
 
-
 class Verkaeufer(Angestellte):
+    """
+    Diese Klasse repräsentiert einen Verkäufer
+
+    Attribute:
+    ----------
+    name: String
+        der Name des Verkäufers
+    lohn: Int
+        der Lohn des Verkäufers
+    auslage: Objekt der Klasse AuslageTresen
+        die Auslage, aus der der Verkäufer die Waren verkauft
+    kasse: Objekt der Klasse Kasse
+        die dem Verkäufer zugeordnete Kasse
+    kaffeemaschine: Objekt der Klasse Kaffeemaschine
+        die dem Verkäufer zugeordnete Kaffeemaschine
+    """
     def __init__(self, name, lohn, auslage, kasse, kaffeemaschine):
         self.auslage = auslage
         self.kasse = kasse

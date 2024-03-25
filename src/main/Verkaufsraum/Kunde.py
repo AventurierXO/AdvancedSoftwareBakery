@@ -2,6 +2,14 @@ import random
 from Verkaufsraum.BestellungBuilder import BestellungBuilder
 
 class Kunde:
+    """
+    Diese Klasse repräsentiert den Kunden
+
+    Attribute:
+    ----------
+    name: String
+        der Name des Kunden
+    """
     def __init__(self, name):
         self.__name = name
 

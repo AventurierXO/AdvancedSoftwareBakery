@@ -1,4 +1,14 @@
 class Kasse:
+    """
+    Diese Klasse repräsentiert eine Kasse
+
+    Attribute:
+    ----------
+    geld: Integer
+        der Geldbetrag, der in der Kasse liegt
+    preisliste: Objekt der Klasse Preisliste
+        eine Übersicht der Waren und ihrer zugeordneten Preise
+    """
     def __init__(self, geld, preisliste):
         self.__geld = geld
         self.preisliste = preisliste

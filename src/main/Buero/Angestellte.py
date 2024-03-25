@@ -1,4 +1,14 @@
 class Angestellte:
+    """
+    Diese Klasse repräsentiert Angestellte
+
+    Attribute:
+    ----------
+    name: String
+        Name des Angestellten
+    lohn: Integer
+        Lohn des Angestellten
+    """
     def __init__(self, name, lohn):
         self.__name = name
         self.__lohn = lohn

@@ -1,8 +1,20 @@
 import Lager
 from src.main.Buero.Angestellte import Angestellte
 
-
 class Baecker(Angestellte):
+    """
+    Diese Klasse repräsentiert einen Bäcker
+
+    Attribute:
+    name: String
+        Name des Bäckers
+    lohn: Integer
+        Lohn des Bäckers
+    lagerbestand: Objekt der Klasse Lagerbestand
+        der Lagerbestand, auf den der Bäcker zugreifen kann
+    rezepte: Objekt der Klasse Rezepte
+        die Rezepte, die der Bäcker nutzt
+    """
     def __init__(self, name, lohn, lagerbestand, rezepte):
         self.lagerbestand = lagerbestand
         self.rezepte = rezepte

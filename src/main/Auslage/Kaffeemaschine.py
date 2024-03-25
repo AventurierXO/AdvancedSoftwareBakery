@@ -1,4 +1,12 @@
 class Kaffeemaschine:
+    """
+    Diese Klasse repräsentiert eine Kaffeemaschine
+
+    Attribute:
+    ----------
+    getraenke_optionen: list
+        eine Liste möglicher Getränke, die die Kaffeemaschine produzieren kann
+    """
     def __init__(self, getraenke_optionen):
         self.__getraenke_optionen = getraenke_optionen
 
