@@ -2,16 +2,37 @@
 
 ## Wegweiser
 
-[Event Storming, Core Domain Chart, Domain Relation Chart, UML Diagramme & DSL Demo (Sequenzdiagramm fuer Verkauf von Backwaren)](https://github.com/AventurierXO/AdvancedSoftwareBakery/tree/main/Diagramme) <br>
-[CCD Cheat Sheet und Erfahrungen](https://github.com/AventurierXO/AdvancedSoftwareBakery/tree/main/CCD)<br>
-[Main: Domains](https://github.com/AventurierXO/AdvancedSoftwareBakery/tree/main/src/main) <br>
-[Fluent Interface Anwendung](https://github.com/AventurierXO/AdvancedSoftwareBakery/blob/main/src/main/Verkaufsraum/BestellungBuilder.py) <br>
-[Build](https://github.com/AventurierXO/mavendemo) <br>
-[Continuous Delivery](https://github.com/AventurierXO/AdvancedSoftwareBakery/blob/main/pyproject.toml) <br>
-[Unit-Tests](https://github.com/AventurierXO/AdvancedSoftwareBakery/tree/main/tests) <br>
-Dokumentation und Lieblings-Shortcuts hierunter
+1) [Git](###Git)
+2) [Event Storming, Core Domain Chart, Domain Relation Chart, UML Diagramme & DSL Demo (Sequenzdiagramm fuer Verkauf von Backwaren)](https://github.com/AventurierXO/AdvancedSoftwareBakery/tree/main/Diagramme) <br>
+3) [Domains](https://github.com/AventurierXO/AdvancedSoftwareBakery/tree/main/src/main) <br> fuer Event Storming, Core Domain Chart und Domain Relation Chart siehe Link unter 2. <br>
+   [Erfahrungen DDD](##DDD)
+4) [Metrics Sonarcube](https://github.com/AventurierXO/AdvancedSoftwareBakery/blob/main/Metrics/SonarqubeMetrics.png)<br>
+    [Erfahrungen Metrics](##Metrics)
+5) [CCD Cheat Sheet und CCD Anwendung](https://github.com/AventurierXO/AdvancedSoftwareBakery/tree/main/CCD)<br>
+   [Erfahrungen CCD](##Clean Code Development)
+6) [Build Maven Demo](https://github.com/AventurierXO/mavendemo) <br>
+   [Erfahrungen Build](##Build)
+7) [Continuous Delivery](https://github.com/AventurierXO/AdvancedSoftwareBakery/blob/main/pyproject.toml) <br>
+   [Erfahrungen Continuous Delivery](##Continuous Delivery)
+8) [Unit Tests](https://github.com/AventurierXO/AdvancedSoftwareBakery/tree/main/src/main/tests) <br>
+   [Erfahrungen Unit Tests](##Unit Tests)
+9) [Lieblings-Tastenkombinationen](####Lieblings-Tastenkombinationen) <br>
+10) [DSL Demo: Verkauf von Backwaren](https://github.com/AventurierXO/AdvancedSoftwareBakery/blob/main/Diagramme/Sequenzidagramm%20f%C3%BCr%20den%20Verkauf%20von%20Backwaren.png) <br>
+    [Erfahrungen DSL Demo](##DSL Demo)
+11) Functional Programming <br>
+[Functional Programming: Python](https://github.com/AventurierXO/AdvancedSoftwareBakery/tree/main/Functional%20Programming) <br>
+[Functional Programming: Java](https://github.com/AventurierXO/mavendemo/tree/master/src) <br>
+    [Erfahrungen Functional Programming](##Functional Programming)
+12) [Code Dokumentation](##Code Dokumentation)
+13) [Fluent Interface Anwendung](https://github.com/AventurierXO/AdvancedSoftwareBakery/blob/main/src/main/Verkaufsraum/BestellungBuilder.py) <br>
 
-## Beschreibung des Projekts
+## Inhaltsverzeichnis README
+1) [Einfuehrung ins Projekt](##Einfuehrung ins Projekt)
+2) [Code Dokumentation](##Code Dokumentation)
+3) [Am meisten genutzte Tastenkombinationen in PyCharm](##Am meisten genutzte Tastenkombinationen in PyCharm)
+4) [Erlaeuterungen Aufgaben Part B](##Erlaeuterungen Aufgaben Part B)
+
+## Einfuehrung ins Projekt
 
 Dieses Projekt ist ein Management-System fuer eine imaginaere Baeckerei.
 Um Geschaeftsprozesse abzubilden, wurde eine grundlegende Struktur gemaess den Standards von "Domain-driven Development" (DDD).
@@ -64,7 +85,7 @@ def kauft_backwaren(self, auslage, verkaeufer):
         bestellung = BestellungBuilder().gebaeckoptionen(auslage.schaue_waren_an()).backbestellung_erzeugen()
         verkaeufer.verkaufe_Waren(bestellung, self)
 ```
-Beim Aufruf der Funktion wird ein Akteur von der Klasse Verkaeufer und ein Objekt der Klasse AuslageTresen zugeordnet. Per Zufall wird mit Hilfe des Bestellungsbuilders eine Bestellung generiert, die alle moeglichen Backwaren der Auslage enthalten kann. Dazu wird zunaechst zufaellig bestimmt, wie viele verschiedene Waren bestellt werden. In Abhaengigkeit von der Anzahl werden eine oder mehrere Bestellungen genriert, die dann als Tupel in die Bestellung angehaengt wird. <br>
+Beim Aufruf der Funktion wird ein Akteur von der Klasse Verkaeufer und ein Objekt der Klasse AuslageTresen zugeordnet. Per Zufall wird mithilfe des Bestellungsbuilders eine Bestellung generiert, die alle moeglichen Backwaren der Auslage enthalten kann. Dazu wird zunaechst zufaellig bestimmt, wie viele verschiedene Waren bestellt werden. In Abhaengigkeit von der Anzahl werden eine oder mehrere Bestellungen genriert, die dann als Tupel in die Bestellung angehaengt wird. <br>
 Nachdem die Liste bestellter Waren fertig generiert ist, wird sie dem zugeordneten Verkaeufer uebergeben und sein Verkaufsprozess wird gestartet. <br>
 
 #### Bestellung von Getraenken:
@@ -201,7 +222,7 @@ def stelle_an(self, name, lohn, position, auslage, kasse, kaffeemaschine, lagerb
 ```
 Es gibt zwei Mitarbeiterklassen, die der Chef anstellen kann: Baecker und Verkaeufer. <br>
 Dazu muessen die Daten des neuen Mitarbeiters uebergeben werden, wie der Name, der Lohn und die Position. Weiterhin werden die rollenspezifischen Werkzeuge zugeordnet, damit beim Anlegen des Mitarbeiters gemaess der Definition der Rollen diese mit uebergeben werden koennen. <br>
-Wenn der Name bereits einem Mitarbeiter "gehoert", dann muss eine aenderung vorgenommen werden, damit der neue Mitarbeiter angelegt werden kann. Danach werden die Mitarbeiter angelegt und in das Angestellten-Dictionary aufgenommen. <br>
+Wenn der Name bereits einem Mitarbeiter "gehoert", dann muss eine Aenderung vorgenommen werden, damit der neue Mitarbeiter angelegt werden kann. Danach werden die Mitarbeiter angelegt und in das Angestellten-Dictionary aufgenommen. <br>
 Der Kuendigungsprozess erfordert lediglich die Entfernung des Mitarbeiters aus dem Angestellten-Dictionary.
 
 ### Lieferant
@@ -227,13 +248,122 @@ def erfuelle_lieferung(self, bestellung, lagerbestand):
 ```
 Der Funktion wird die Bestellung und der Lagerbestand des Kunden uebergeben. Der Lieferant uebergibt dem Lagerarbeiter die Bestellung, die dieser sogleich als fertie Lieferung zusammenstellt. Die Lieferung wird dann zur Baeckerei gebracht und dort eingelagert. Aus der Lieferung wird ein Rechnungsbetrag errechnet und dem Chef uebersandt, die dieser bezahlt und daraufhin die Einzahlung in die Kasse ausloest.
 
-## Am meisten genutzte Tastenkombinationen in PyCharm
+## Erlaeuterungen Aufgaben Part B
+[zurueck zum Wegweiser](##Wegweiser)
 
+### Git
+Git wurde vorwiegend ueber das Git-Plugin von PyCharm sowie ueber Git Desktop genutzt. Es wurden regelmaessige Aktualisierungen
+mit Kommentaren zur Aenderung gepushed und Aenderungen wurden auch einmal rueckgaengig gemacht, da ein fehlerhafter Push
+stattgefunden hat. Konflikte konnten aufgrund der Natur des Projekts nicht abgegbildet werden.
+
+### UML
+Mithilfe der Browserversion von PlantUML wurden die Diagramme erzeugt. Es war ein Spass, sich durch die Dokumentation
+zu arbeiten und zu lernen, wie die entsprechenden Diagrammtypen geschrieben werden und deren Darstellung in Echtzeit zu
+beobachten. Es war auch eine wichtige Stuetze bei der Festhaltung des Projektfortschritts. <br>
+Im Git sind die finalen Versionen der Diagramme zu finden, sie wurden aber ueber das Projekt hinweg mehrmals
+aktualisiert, um Aenderungen bei Klassen, Funktionen und Zusammenhaenge zwischen Klassen abzubilden.
+
+### DDD
+Die Domaenen wurden zu Beginn des Projekts entworfen und gemaess des Feedbacks auf 6 erhoeht. Die Domaenen und ihre Funktionen
+wurden gemaess der Fachlichkeit im Kontext einer gelaeufigen Baeckerei entworfen und umgesetzt. Zu Beginn war aber noch
+nicht wirklich klar, welche Funktionalitaeten wirklich implementiert werden, da fuer mich wichtig war, den Umfang des
+Projekts so zu gestalten, dass ich es auch in der urspruenglich kuerzeren Umsetzungszeit schaffen kann. Demzufolge sind
+Ideen des ersten Entwurfs wie im Verkaufsraum ein Tischmanagement einzurichten, sodass Kunden im Verkaufsraum auch
+Backwaren und Getraenke direkt verzehren koennen, verworfen worden, um mehr Zeit fuer ein ordentliches Design von
+den vorhandenen Geschaeftsprozessen zu gewaehrleisten. <br>
+Aehnlich zu den UML-Diagrammen wurde auch auf das Eventstorming ein Auge behalten, um fuer Ideen und Funktionalitaeten
+fuer mehr Qualitaet offen zu bleiben. Ideen, die engueltig verworfen wurden, wurden aus dem Diagramm entfernt. Die
+im Git zu findende Version ist die finale, in der die Geschaeftsprozesse auch entsprechend ihren Domaenen zugeordnet sind. <br>
+Die Beziehung der Domaenen hat sich ueber das Projekt insofern geaendert, als dass zu Beginn der Implementierung viel
+Spaghetti-Code vorlag, der nicht der intialen Vorstellung der Beziehungen zwischen Domaenen entsprach. Diese Dissonanz
+konnte erst mit Einfuehrung der Interaktionsschicht mit den Angestelltenklassen umgesetzt werden, sodass das finale Projekt
+von der initialen Vorstellung nur gering abweicht. Abweichungen sind nur gering und dadurch erklaert, dass bei der Implementierung
+die einfachste und verstaendlichste Loesung abwich. Die finale Loesung ist trotz Abweichung insofern in Ordnung, als dass
+keine kreisfoermigen Abhaengigkeiten von Domaenen entstanden sind.
+
+### Metrics
+Wie empfohlen wurde fuer das Projekt SonarQube genutzt. SonarQube war eine riesige Hilfe dabei, Fehler zu entdecken (vor
+allem fuer eine Anfaengerin wie mich, die fuer erfahrene Entwickler offensichtliche Fehler nicht erkennt). SonarQube
+war ueber das gesamte Projekt hinweg fuer mich das Werkzeug, an dass ich mich immer erinnern werde und fuer ein kuenftiges
+Projekt von Beginn an einbeziehen wuerde. Das Einzige, was mich sehr geaergert hat, ist, dass es mir nicht gelungen ist, die 
+Testcoverage in SonarQube darzustellen. Darin habe ich so viele Stunden gesteckt, weil die Testcoverage der Teil des Projekts
+ist, auf den ich sehr stolz bin und den ich auch sehr priorisiert habe. Nichtsdestotrotz ist SonarQube
+ein grossartiges Tool und hat mich stark dabei unterstuetzt zu einem Ergebnis zu kommen, mit dem ich zufrieden bin. <br>
+Die schlechte Sicherheitsbewertung meines Projekts ist rein durch die Verwendung des random-Pakets in meinem Fluent Interface
+bedingt, da fuer SonarCube dies keine sicheren Zufallsgeneratoren stellt. Da die Anwendung jedoch nur sehr klein ist und
+das random-Paket ein gelaeufiges Beginner-Paket fuer Zufallsgeneratoren ist, wurde dieses trotzdem beibehalten. Die Prioritaet
+wurde vor allem auf ein ascii-freundliches Benennungsschema gesetzt, das auch den herkoemmlichen Coding-Konventionen folgt.
+
+### Clean Code Development
+Da ich nur eine voherige Coding-Erfahrung hatte, die mittlerweile 7 Jahre her ist, hatte ich vor der Umsetzung dieses Aspekts
+den meisten Respekt. Die Lesbarkeit, Struktur und Einhaltung von Coding-Konventionen war ueber den Grossteil des Projekts einfach
+grottig. Gleichzeitig ist das genau deswegen auch der Aspekt, bei dem ich am meisten dazugelernt und verbessert habe. Es
+hat sehr viele Stunden und viel Lernarbeit auch ausserhalb des Projekts gebraucht, um Grundlagen der CCD-Prinzipien umzusetzen.
+Zu wissen, dass das Projekt nun in vielerlei Hinsicht diesen Prinzipien entspricht, ist fuer mich ein grosser Erfolg.
+
+### Build
+Es war auch meine erste Erfahrung mit Maven, dementsprechend ist die Demo bescheiden, aber tut, was sie soll. Um einmal kurz auf den
+Abschnitt Functional Programming vorzugreifen - einige der dort geforderten Konzepte wie finale Datenstrukturen und private
+Klassenattribute lassen sich in Python nicht umsetzen. Demzufolge habe ich diese in Java geschrieben, einen
+Test dafuer verfasst und mit in die Maven-Demo gepackt. Das Aufsetzen eines Builds war fuer mich neu und ein wenig frustrierend,
+weil es schwierig fuer mich war, Fehler zu finden und zu beheben, bis es funktioniert hat. Eine weitere Herausforderung,
+deren Bewaelitgung ich als Erfolg verbuchen kann.
+
+### Continuous Delivery
+Auch hier war es mein erstes Mal, eine Pipeline aufzusetzen. Erneute Frustration, wenn etwas nicht so lief wie es sollte.
+Die entstandene Pipeline ist ein minimum value product, aber das war noetig, um so priorisieren zu koennen,
+dass das Projekt eine gute Qualitaet erreicht.
+
+### Unit Tests
+Nach den voherigen Punkten bin ich dankbar, dass ich mit Unit-Tests bekannten Boden betreten konnte. Ich bin ein grosser Fan
+von Tests, da sie dabei helfen, Auswirkungen von funktionalen Aenderungen bei einer Klasse direkt pruefen zu koennen und zu
+schauen, ob bei abhaengigen Klassen Fehler entstanden sind. Der Ansatz dabei war: jede Funktion, die eine nicht triviale Aufgabe
+(z.B. Getter-Funktionen) erfuellt und eine Variable zurueckgibt wird geprueft. Dies konnte so auch umgesetzt werden. Ich habe
+in einem Forum in Bezug auf side-effect free programming eine hitzige Diskussion zu der Verwendung von Exceptions gelesen - ich persoenlich positioniere
+mich eher dazu, Funktionen moeglichst unabhaengig zu betrachten und lieber etwas mehr abzufangen als zu wenig. Dies begruende
+ich so, dass es bei einer hypothetischen Weiterentwicklung des Projekts dabei hilft, moegliche Aenderungen zu pruefen und Integritaet
+zu von Geschaeftsprozessen zu wahren. Dabei ist mir jedoch auch wichtig, dass nicht nur die Exceptions an sich fliegen, sondern
+dass diese auch wiedergeben, was denn genau das Problem ist.
+
+### IDE
+#### Lieblings-Tastenkombinationen
 Alt Enter: <br>
 Kontextmenue - immer dann nuetzlich, um Variablen oder Funktionen wiederzufinden, z.B. wenn man sich verschrieben hat oder Probleme mit der Sichtbarkeit bestehen. <br>
 <br>
 Alt F7: <br>
-Nach dem ueberarbeiten einer Funktion kann man so schnell suchen, wo sie ueberall vorkommt, um zu ueberpruefen, ob etwas kaputt gegangen ist. <br>
+Nach dem Ueberarbeiten einer Funktion kann man so schnell suchen, wo sie ueberall vorkommt, um zu ueberpruefen, ob etwas kaputt gegangen ist. <br>
 <br>
 Shift F6: <br>
-Dieser Shortcut hilft dabei, alle Variablen- / Funktionsnamen auf einmal umzubenennen. Wurde viel benutzt, um ein einheitliches Benennungsschema umzusetzen.
+Dieser Shortcut hilft dabei, alle Variablen- / Funktionsnamen auf einmal umzubenennen. Wurde viel benutzt, um ein einheitliches Benennungsschema innerhalb einer Datei umzusetzen. <br>
+<br>
+Strg Shift R: <br>
+Fuer das Refactoring wurde diese Tastenkombination genutzt, um ueber das gesamte Projekt hinweg Funktions- und Variablennamen so anzupassen, dass
+ein uniformes Benennungsschema entsteht. Als Hilfe wurde Sonarqube genutzt, um problematische Bezeichnungen zu finden
+und im Anschluss zu korrigieren. <br>
+<br>
+#### weitere Erlaeuterungen zur IDE
+Da ich mit PyCharm die meisten Vorerfahrungen habe, wollte ich auch das Projekt darin gestalten. Im CS for Big Data Modul hatte ich ueber das 
+Semester ersten Kontakt mit VSCode, ich hatte aber staendig Probleme und das Gefuehl, nicht wirklich damit warm zu werden.
+Dementsprechend war PyCharm in gewisser Weise auch eine zwingende Wahl.
+
+### DSL Demo
+Aehnlich wie bereits zu den UML-Diagrammen erwaehnt, hat mir auch die Erstellung des Sequenzdiagramms Spass gemacht. Es gibt
+auch sehr schoen die Struktur wieder, die ein Geschaeftsprozess hat. Der erste Versuch eines Sequenzdiagramms hat mir deutlich
+aufgezeigt, dass meine Funktionsstrukturen sehr wirr sind. Es liefert eine Anschaulichkeit, die das einfache Schreiben von Code
+nicht liefern kann - vor allem dann, wenn Prozesse ueber mehrere Klassen verlaufen. Vor dem Aufsetzen von SonarQube war
+dies meine erste Moeglichkeit, grundlegend die Ablaeufe meiner Funktionen zu ueberblicken und ueberdenken.
+Auch dies wuerde ich fuer kuenftige Projekte wieder nutzen, auch wenn ich nun viel mehr Erfahrung habe und dementsprechend
+mehr fuer strukturelle Konventionen sensibilisiert bin. Die Anschaulichkeit eines Geschaeftsprozesses auf diese Weise finde
+ich zur Kommunikation in einem Team persoenlich sinnvoll.
+
+### Functional Programming
+Diese Aufgabe hat mir persoenlich klargemacht, wie viel es noch zu lernen gibt. Die im Projekt verwendeten Funktionalitaeten
+sind viel primitiver als die hier geforderten Aspekte. Ich habe diese Aspekte in mathematischen Kontexten umgesetzt, einfach
+weil ich finde, dass mathematische Methoden sehr gut in Code umzusetzen sind. Vor allem bei der closure-Funktion hatte ich
+das Gefuehl, wie wenn man zum ersten Mal eine Rekursion schreibt. Das ist einfach etwas ganz anderes fuer mich, was ich erstmal
+verstehen muss. Auch hier habe ich ausserhalb des Projekts noch etwas weitergelesen und recherchiert, um mir zu helfen,
+diese Art der Implementierung zu verstehen. Auch wenn die implementierten Funktionen letztendlich funktionieren und auch ihre
+entsprechenden Tests bestehen, ist das funktionale Programmieren etwas, dass ich in Zukunft gerne noch mehr ueben wuerde,
+um eine bessere Programmiererin zu werden. <br>
+Im Maven-Projekt habe ich die Angestellten- und Chef-Klasse aus dem Projekt noch einmal auf Java umgesetzt und getestet.
+Ich habe nicht viel Erfahrung mit Java, aber es war einfach noetig, um die geforderten Konzepte umzusetzen.
