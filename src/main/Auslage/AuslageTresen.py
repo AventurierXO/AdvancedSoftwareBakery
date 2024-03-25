@@ -1,5 +1,5 @@
-"""Klasse Auslage_Tresen: Haelt Funktionen, die es ermoeglichen mit der Auslage zu interagieren"""
-class Auslage_Tresen:
+"""Klasse AuslageTresen: Haelt Funktionen, die es ermoeglichen mit der Auslage zu interagieren"""
+class AuslageTresen:
     def __init__(self, auslage):
         self.__auslage = auslage
 

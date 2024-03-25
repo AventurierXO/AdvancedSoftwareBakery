@@ -1,5 +1,5 @@
 import pytest
-from Auslage.Auslage_Tresen import Auslage_Tresen
+from Auslage.AuslageTresen import AuslageTresen
 
 auslage1_basis = {
     "Weizensemmel": 50,
@@ -25,8 +25,8 @@ auslage2_basis = {
     "Pfannkuchen": 50
 }
 
-test_auslage1 = Auslage_Tresen(auslage1_basis)
-test_auslage2 = Auslage_Tresen(auslage2_basis)
+test_auslage1 = AuslageTresen(auslage1_basis)
+test_auslage2 = AuslageTresen(auslage2_basis)
 
 def test_erfasse_fehlende_backwaren():
     test_backwaren = test_auslage2.erfasse_fehlende_backwaren()

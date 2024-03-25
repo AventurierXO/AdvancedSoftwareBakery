@@ -1,6 +1,6 @@
 from Auslage.Kasse import Kasse
 
-class Kasse_Lieferant(Kasse):
+class KasseLieferant(Kasse):
     def __init__(self, geld, preisliste):
         super().__init__(geld, preisliste)
 

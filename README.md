@@ -64,7 +64,7 @@ def kauft_backwaren(self, auslage, verkaeufer):
         bestellung = BestellungBuilder().gebaeckoptionen(auslage.schaue_waren_an()).backbestellung_erzeugen()
         verkaeufer.verkaufe_Waren(bestellung, self)
 ```
-Beim Aufruf der Funktion wird ein Akteur von der Klasse Verkaeufer und ein Objekt der Klasse Auslage_Tresen zugeordnet. Per Zufall wird mit Hilfe des Bestellungsbuilders eine Bestellung generiert, die alle moeglichen Backwaren der Auslage enthalten kann. Dazu wird zunaechst zufaellig bestimmt, wie viele verschiedene Waren bestellt werden. In Abhaengigkeit von der Anzahl werden eine oder mehrere Bestellungen genriert, die dann als Tupel in die Bestellung angehaengt wird. <br>
+Beim Aufruf der Funktion wird ein Akteur von der Klasse Verkaeufer und ein Objekt der Klasse AuslageTresen zugeordnet. Per Zufall wird mit Hilfe des Bestellungsbuilders eine Bestellung generiert, die alle moeglichen Backwaren der Auslage enthalten kann. Dazu wird zunaechst zufaellig bestimmt, wie viele verschiedene Waren bestellt werden. In Abhaengigkeit von der Anzahl werden eine oder mehrere Bestellungen genriert, die dann als Tupel in die Bestellung angehaengt wird. <br>
 Nachdem die Liste bestellter Waren fertig generiert ist, wird sie dem zugeordneten Verkaeufer uebergeben und sein Verkaufsprozess wird gestartet. <br>
 
 #### Bestellung von Getraenken:
@@ -98,7 +98,7 @@ class Verkaeufer(Angestellte):
         self.kaffeemaschine= kaffeemaschine
         super().__init__(name, lohn)
 ```
-Neben den generischen Eigenschaften Name und Lohn, die von der Superklasse geerbt werden, wird jedem Verkaeufer jeweils ein Objekt von Typ Auslage_Tresen, Kasse und Kaffeemaschine zugeordnet. Dies ermoeglicht, dass die Klasse direkt auf die Objekte zugreifen kann, was auch die Anzahl der zu uebergebenden Argumente bei Funktionsaufrufen deutlich vekuerzt.
+Neben den generischen Eigenschaften Name und Lohn, die von der Superklasse geerbt werden, wird jedem Verkaeufer jeweils ein Objekt von Typ AuslageTresen, Kasse und Kaffeemaschine zugeordnet. Dies ermoeglicht, dass die Klasse direkt auf die Objekte zugreifen kann, was auch die Anzahl der zu uebergebenden Argumente bei Funktionsaufrufen deutlich vekuerzt.
 
 #### Verkauf von Backwaren
 

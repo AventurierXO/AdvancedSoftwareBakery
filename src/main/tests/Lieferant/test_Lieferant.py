@@ -1,9 +1,9 @@
 import pytest
 from Lieferant.Lieferant import Lieferant
-from Lieferant.Preisliste_Lieferant import Preisliste_Lieferant
+from Lieferant.PreislisteLieferant import PreislisteLieferant
 from Lieferant.Lagerarbeiter import Lagerarbeiter
 from Lieferant.Lieferbestand import Lieferbestand
-from Lieferant.Kasse_Lieferant import Kasse_Lieferant
+from Lieferant.KasseLieferant import KasseLieferant
 from Lager.Lagerbestand import Lagerbestand
 
 testbestand_dummy = ["Mehl", "Zucker", "Milch", "Eier", "Hefe", "Wasser", "Butter", "Kuerbiskerne"]
@@ -20,7 +20,7 @@ preisliste = {
     "Kuerbiskerne": 0.20
 }
 
-testpreisliste = Preisliste_Lieferant(preisliste)
+testpreisliste = PreislisteLieferant(preisliste)
 
 dummy_lagerbestand = {
     "Weizensemmel": 50,
@@ -44,7 +44,7 @@ dummy_lagerbestand = {
 
 testlagerbestand = Lagerbestand(dummy_lagerbestand)
 testlagerarbeiter = Lagerarbeiter(testbestand)
-testkasse = Kasse_Lieferant(10000, testpreisliste)
+testkasse = KasseLieferant(10000, testpreisliste)
 testlieferant = Lieferant("Testlieferant", testlagerarbeiter, testbestand, testkasse)
 
 def test_erfuelle_lieferung_korrekt():

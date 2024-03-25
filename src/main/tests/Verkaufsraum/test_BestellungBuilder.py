@@ -1,6 +1,6 @@
 import pytest
 from Verkaufsraum.BestellungBuilder import BestellungBuilder
-from Auslage.Auslage_Tresen import Auslage_Tresen
+from Auslage.AuslageTresen import AuslageTresen
 from Auslage.Kaffeemaschine import Kaffeemaschine
 
 auslage = {
@@ -17,7 +17,7 @@ auslage = {
 
 getraenkeoptionen = ["Pot Kaffee", "Tasse Kaffee", "Latte Macchiato", "Cappucino", "Espresso", "Heisse Schokolade"]
 
-testauslage = Auslage_Tresen(auslage)
+testauslage = AuslageTresen(auslage)
 testkaffeemaschine = Kaffeemaschine(getraenkeoptionen)
 def test_gebaeckbestellung_erzeugen():
     bestellung = BestellungBuilder().gebaeckoptionen(testauslage.schaue_waren_an()).backbestellung_erzeugen()

@@ -3,7 +3,7 @@ import math
 from Auslage.Kasse import Kasse
 from Auslage.Preisliste import Preisliste
 from Auslage.Verkaeufer import Verkaeufer
-from Auslage.Auslage_Tresen import Auslage_Tresen
+from Auslage.AuslageTresen import AuslageTresen
 from Auslage.Kaffeemaschine import Kaffeemaschine
 
 preisliste = {
@@ -26,7 +26,7 @@ preisliste = {
 
 testpreisliste = Preisliste(preisliste)
 testkasse = Kasse(10000, testpreisliste)
-testauslage = Auslage_Tresen({})
+testauslage = AuslageTresen({})
 testkaffeemaschine = Kaffeemaschine([])
 testverkaeufer = Verkaeufer("Alex", 2000, testauslage, testkasse, testkaffeemaschine)
 

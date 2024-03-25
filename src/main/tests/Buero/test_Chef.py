@@ -3,11 +3,11 @@ from Auslage.Verkaeufer import Verkaeufer
 from Buero.Chef import Chef
 from Lager.Lagerbestand import Lagerbestand
 from Lieferant.Lieferant import Lieferant
-from Lieferant.Preisliste_Lieferant import Preisliste_Lieferant
+from Lieferant.PreislisteLieferant import PreislisteLieferant
 from Lieferant.Lagerarbeiter import Lagerarbeiter
 from Lieferant.Lieferbestand import Lieferbestand
-from Lieferant.Kasse_Lieferant import Kasse_Lieferant
-from Auslage.Auslage_Tresen import Auslage_Tresen
+from Lieferant.KasseLieferant import KasseLieferant
+from Auslage.AuslageTresen import AuslageTresen
 from Auslage.Kasse import Kasse
 from Auslage.Preisliste import Preisliste
 from Auslage.Kaffeemaschine import Kaffeemaschine
@@ -70,15 +70,15 @@ preisliste = {
     "Kuerbiskerne": 0.20
 }
 
-testpreisliste1 = Preisliste_Lieferant(preisliste)
+testpreisliste1 = PreislisteLieferant(preisliste)
 testpreisliste2 = Preisliste({})
 testkasse = Kasse(100, testpreisliste2)
-testkasse_lieferant = Kasse_Lieferant(1000, testpreisliste1)
-testauslage = Auslage_Tresen({})
+testKasseLieferant = KasseLieferant(1000, testpreisliste1)
+testauslage = AuslageTresen({})
 testkaffeemaschine = Kaffeemaschine([])
 testrezepte = Rezepte({})
 testlagerarbeiter = Lagerarbeiter(testbestand)
-testlieferant = Lieferant("Testo", testlagerarbeiter, testbestand, testkasse_lieferant)
+testlieferant = Lieferant("Testo", testlagerarbeiter, testbestand, testKasseLieferant)
 testverkaeufer = Verkaeufer("Anna", 2000, testauslage, testkasse, testkaffeemaschine)
 test_name1 = "Anna"
 test_name2 = "Ruben"
