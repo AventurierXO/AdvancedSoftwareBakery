@@ -5,7 +5,7 @@ left to right direction
 
 package Auslage{
 Actor Verkaeufer as Verkaeufer
-package Auslage_Tresen {
+package AuslageTresen {
 usecase "Pruefe fehlende Backwaren" as Pruefung
 usecase "befuelle Auslage mit gelieferten Waren" as Befuellen
 usecase "entnehme Backwaren" as Entnehmen

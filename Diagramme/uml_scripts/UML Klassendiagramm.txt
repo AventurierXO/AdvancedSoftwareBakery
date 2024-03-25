@@ -10,17 +10,17 @@ Lagerarbeiter
 Lieferbestand
 Kasse
 gebe_namen_an()
-erfuelle_lieferung(Bestellung, Lagerbestand)
-kassiere_geld_ein(Geld)
+erfuelle_lieferung(bestellung, lagerbestand)
+kassiere_geld_ein(geld)
 }
 
-class Kasse_Lieferant{
+class KasseLieferant{
 erstelle_rechnung_lieferung()
 }
 
 class Lagerarbeiter{
 Lieferbestand
-stelle_lieferung_zusammen(Bestellung)
+stelle_lieferung_zusammen(bestellung)
 }
 
 class Lieferbestand{
@@ -28,33 +28,33 @@ Bestand
 pruefe_bestand()
 }
 
-class Preisliste_Lieferant{}
+class PreislisteLieferant{}
 
-Lieferant "1" *-- "1" Preisliste_Lieferant
+Lieferant "1" *-- "1" PreislisteLieferant
 Lieferant "1" *-- "many" Lagerarbeiter
-Lieferant "1" *-- "1" Kasse_Lieferant
+Lieferant "1" *-- "1" KasseLieferant
 Lieferant "1" *-- "1" Lieferbestand
-Kasse_Lieferant "1" *-- "1" Preisliste_Lieferant
+KasseLieferant "1" *-- "1" PreislisteLieferant
 }
 
 package "Auslage" {
 
 class Verkaeufer {
-Auslage_Tresen
+AuslageTresen
 Kasse
 Kaffeemaschine
-verkaufe_backwaren(Bestellung, Kunde)
-verkaufe_getraenke(Bestellung, Kunde)
-kassiere_geld_ein(Rechnung, Kunde)
-bestelle_backwaren_nach(Baecker)
+verkaufe_backwaren(bestellung, kunde)
+verkaufe_getraenke(bestellung, kunde)
+kassiere_geld_ein(rechnung, kunde)
+bestelle_backwaren_nach(baecker)
 }
 
 class Kasse{
 Geld
 Preisliste
 geld_in_kasse()
-zahle_geld_ein(Betrag)
-erstelle_rechnung(Einkauf)
+zahle_geld_ein(betrag)
+erstelle_rechnung(einkauf)
 }
 
 class Kaffeemaschine{
@@ -63,13 +63,13 @@ schaue_optionen_an()
 mache_getraenk()
 }
 
-class Auslage_Tresen{
+class AuslageTresen{
 Auslage
 pruefe_bestand()
 schaue_waren_an()
 erfasse_fehlende_backwaren()
-entnehme_backwerk(Bestellung)
-fuelle_bestand_nach(Lieferung)
+entnehme_backwerk(bestellung)
+fuelle_bestand_nach(lieferung)
 }
 
 class Preisliste{
@@ -79,25 +79,25 @@ pruefe_preisliste()
 
 Verkaeufer "many" *-- "1" Kasse
 Verkaeufer "many" *-- "many" Kaffeemaschine
-Verkaeufer "many" *-- "1" Auslage_Tresen
+Verkaeufer "many" *-- "1" AuslageTresen
 Kasse "1" *-- "1" Preisliste
-Kasse <|-- Lieferant.Kasse_Lieferant
+Kasse <|-- Lieferant.KasseLieferant
 }
 
 package "Backstube" {
 class Baecker{
 Lagerbestand
 Rezepte
-liefere_backstuecke(Anforderung)
+liefere_backstuecke(anforderung)
 ermittle_nachzufuellende_backstuecke()
 produziere_backstueck()
-hole_zutaten(Zutatenliste)
-backe(Bestellung)
+hole_zutaten(zutatenliste)
+backe(bestellung)
 }
 
 class Rezepte {
 Rezepte
-hole_rezept(Backstueck)
+hole_rezept(backstueck)
 }
 
 Baecker "many" *-- "1" Rezepte
@@ -109,9 +109,9 @@ package "Verkaufsraum" {
 class Kunde {
 Name
 gebe_namen_an_an()
-kauft_backwaren(Auslage, Verkaeufer)
-kauft_heissgetraenk(Kaffeemaschine, Verkaeufer)
-bezahlen(Rechnung)
+kauft_backwaren(auslage, verkaeufer)
+kauft_heissgetraenk(kaffeemaschine, verkaeufer)
+bezahlen(rechnung)
 }
 
 class BestellungBuilder {
@@ -137,27 +137,27 @@ gebe_lohn_an()
 class Chef{
 Lagerbestand
 Lieferant
-aendere_lohn(Mitarbeiter, Lohnaenderung)
+aendere_lohn(mitarbeiter, lohnaenderung)
 bestelle_zutaten()
 erstelle_bestellung()
-bezahle_Rechnung(Rechnung)
-stelle_an(Name, Lohn, Position)
-kuendige(Mitarbeiter)
+bezahle_Rechnung(rechnung)
+stelle_an(name, lohn, position)
+kuendige(mitarbeiter)
 }
 
 Angestellte <|-- Chef
 Angestellte <|-- Auslage.Verkaeufer
 Angestellte <|-- Backstube.Baecker
 Chef "1" o-- "1" Lieferant.Lieferant
-Preisliste <|-- Preisliste_Lieferant
+Preisliste <|-- PreislisteLieferant
 }
 
 package "Lager" {
 class Lagerbestand{
 Bestand
 pruefe_fehlende_waren(back)
-lagere_ein(Waren)
-nimm_aus_dem_lager(Waren, Anzahl)
+lagere_ein(waren)
+nimm_aus_dem_lager(waren, anzahl)
 }
 
 Buero.Chef "1" *-- "1" Lager.Lagerbestand
