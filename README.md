@@ -2,35 +2,29 @@
 
 ## Wegweiser
 
-1) [Git](###Git)
+1) [Git](#git)
 2) [Event Storming, Core Domain Chart, Domain Relation Chart, UML Diagramme & DSL Demo (Sequenzdiagramm fuer Verkauf von Backwaren)](https://github.com/AventurierXO/AdvancedSoftwareBakery/tree/main/Diagramme) <br>
 3) [Domains](https://github.com/AventurierXO/AdvancedSoftwareBakery/tree/main/src/main) <br> fuer Event Storming, Core Domain Chart und Domain Relation Chart siehe Link unter 2. <br>
-   [Erfahrungen DDD](##DDD)
+   [Erfahrungen DDD](#ddd)
 4) [Metrics Sonarcube](https://github.com/AventurierXO/AdvancedSoftwareBakery/blob/main/Metrics/SonarqubeMetrics.png)<br>
-    [Erfahrungen Metrics](##Metrics)
+    [Erfahrungen Metrics](#metrics)
 5) [CCD Cheat Sheet und CCD Anwendung](https://github.com/AventurierXO/AdvancedSoftwareBakery/tree/main/CCD)<br>
-   [Erfahrungen CCD](##Clean Code Development)
+   [Erfahrungen CCD](#clean-code-development)
 6) [Build Maven Demo](https://github.com/AventurierXO/mavendemo) <br>
-   [Erfahrungen Build](##Build)
+   [Erfahrungen Build](#build)
 7) [Continuous Delivery](https://github.com/AventurierXO/AdvancedSoftwareBakery/blob/main/pyproject.toml) <br>
-   [Erfahrungen Continuous Delivery](##Continuous Delivery)
+   [Erfahrungen Continuous Delivery](#continuous-delivery)
 8) [Unit Tests](https://github.com/AventurierXO/AdvancedSoftwareBakery/tree/main/src/main/tests) <br>
-   [Erfahrungen Unit Tests](##Unit Tests)
-9) [Lieblings-Tastenkombinationen](####Lieblings-Tastenkombinationen) <br>
+   [Erfahrungen Unit Tests](#unit-tests)
+9) [Lieblings-Tastenkombinationen](#lieblings-tastenkombinationen) <br>
 10) [DSL Demo: Verkauf von Backwaren](https://github.com/AventurierXO/AdvancedSoftwareBakery/blob/main/Diagramme/Sequenzidagramm%20f%C3%BCr%20den%20Verkauf%20von%20Backwaren.png) <br>
-    [Erfahrungen DSL Demo](##DSL Demo)
+    [Erfahrungen DSL Demo](#dsl-demo)
 11) Functional Programming <br>
 [Functional Programming: Python](https://github.com/AventurierXO/AdvancedSoftwareBakery/tree/main/Functional%20Programming) <br>
 [Functional Programming: Java](https://github.com/AventurierXO/mavendemo/tree/master/src) <br>
-    [Erfahrungen Functional Programming](##Functional Programming)
-12) [Code Dokumentation](##Code Dokumentation)
+    [Erfahrungen Functional Programming](#functional-programming)
+12) [Code Dokumentation](#code-dokumentation)
 13) [Fluent Interface Anwendung](https://github.com/AventurierXO/AdvancedSoftwareBakery/blob/main/src/main/Verkaufsraum/BestellungBuilder.py) <br>
-
-## Inhaltsverzeichnis README
-1) [Einfuehrung ins Projekt](##Einfuehrung ins Projekt)
-2) [Code Dokumentation](##Code Dokumentation)
-3) [Am meisten genutzte Tastenkombinationen in PyCharm](##Am meisten genutzte Tastenkombinationen in PyCharm)
-4) [Erlaeuterungen Aufgaben Part B](##Erlaeuterungen Aufgaben Part B)
 
 ## Einfuehrung ins Projekt
 
@@ -249,20 +243,19 @@ def erfuelle_lieferung(self, bestellung, lagerbestand):
 Der Funktion wird die Bestellung und der Lagerbestand des Kunden uebergeben. Der Lieferant uebergibt dem Lagerarbeiter die Bestellung, die dieser sogleich als fertie Lieferung zusammenstellt. Die Lieferung wird dann zur Baeckerei gebracht und dort eingelagert. Aus der Lieferung wird ein Rechnungsbetrag errechnet und dem Chef uebersandt, die dieser bezahlt und daraufhin die Einzahlung in die Kasse ausloest.
 
 ## Erlaeuterungen Aufgaben Part B
-[zurueck zum Wegweiser](##Wegweiser)
 
 ### Git
 Git wurde vorwiegend ueber das Git-Plugin von PyCharm sowie ueber Git Desktop genutzt. Es wurden regelmaessige Aktualisierungen
 mit Kommentaren zur Aenderung gepushed und Aenderungen wurden auch einmal rueckgaengig gemacht, da ein fehlerhafter Push
 stattgefunden hat. Konflikte konnten aufgrund der Natur des Projekts nicht abgegbildet werden.
-
+<br>[zurueck zum Wegweiser](#wegweiser)
 ### UML
 Mithilfe der Browserversion von PlantUML wurden die Diagramme erzeugt. Es war ein Spass, sich durch die Dokumentation
 zu arbeiten und zu lernen, wie die entsprechenden Diagrammtypen geschrieben werden und deren Darstellung in Echtzeit zu
 beobachten. Es war auch eine wichtige Stuetze bei der Festhaltung des Projektfortschritts. <br>
 Im Git sind die finalen Versionen der Diagramme zu finden, sie wurden aber ueber das Projekt hinweg mehrmals
 aktualisiert, um Aenderungen bei Klassen, Funktionen und Zusammenhaenge zwischen Klassen abzubilden.
-
+<br>[zurueck zum Wegweiser](#wegweiser)
 ### DDD
 Die Domaenen wurden zu Beginn des Projekts entworfen und gemaess des Feedbacks auf 6 erhoeht. Die Domaenen und ihre Funktionen
 wurden gemaess der Fachlichkeit im Kontext einer gelaeufigen Baeckerei entworfen und umgesetzt. Zu Beginn war aber noch
@@ -280,7 +273,7 @@ konnte erst mit Einfuehrung der Interaktionsschicht mit den Angestelltenklassen 
 von der initialen Vorstellung nur gering abweicht. Abweichungen sind nur gering und dadurch erklaert, dass bei der Implementierung
 die einfachste und verstaendlichste Loesung abwich. Die finale Loesung ist trotz Abweichung insofern in Ordnung, als dass
 keine kreisfoermigen Abhaengigkeiten von Domaenen entstanden sind.
-
+<br>[zurueck zum Wegweiser](#wegweiser)
 ### Metrics
 Wie empfohlen wurde fuer das Projekt SonarQube genutzt. SonarQube war eine riesige Hilfe dabei, Fehler zu entdecken (vor
 allem fuer eine Anfaengerin wie mich, die fuer erfahrene Entwickler offensichtliche Fehler nicht erkennt). SonarQube
@@ -293,14 +286,14 @@ Die schlechte Sicherheitsbewertung meines Projekts ist rein durch die Verwendung
 bedingt, da fuer SonarCube dies keine sicheren Zufallsgeneratoren stellt. Da die Anwendung jedoch nur sehr klein ist und
 das random-Paket ein gelaeufiges Beginner-Paket fuer Zufallsgeneratoren ist, wurde dieses trotzdem beibehalten. Die Prioritaet
 wurde vor allem auf ein ascii-freundliches Benennungsschema gesetzt, das auch den herkoemmlichen Coding-Konventionen folgt.
-
+<br>[zurueck zum Wegweiser](#wegweiser)
 ### Clean Code Development
 Da ich nur eine voherige Coding-Erfahrung hatte, die mittlerweile 7 Jahre her ist, hatte ich vor der Umsetzung dieses Aspekts
 den meisten Respekt. Die Lesbarkeit, Struktur und Einhaltung von Coding-Konventionen war ueber den Grossteil des Projekts einfach
 grottig. Gleichzeitig ist das genau deswegen auch der Aspekt, bei dem ich am meisten dazugelernt und verbessert habe. Es
 hat sehr viele Stunden und viel Lernarbeit auch ausserhalb des Projekts gebraucht, um Grundlagen der CCD-Prinzipien umzusetzen.
 Zu wissen, dass das Projekt nun in vielerlei Hinsicht diesen Prinzipien entspricht, ist fuer mich ein grosser Erfolg.
-
+<br>[zurueck zum Wegweiser](#wegweiser)
 ### Build
 Es war auch meine erste Erfahrung mit Maven, dementsprechend ist die Demo bescheiden, aber tut, was sie soll. Um einmal kurz auf den
 Abschnitt Functional Programming vorzugreifen - einige der dort geforderten Konzepte wie finale Datenstrukturen und private
@@ -308,12 +301,12 @@ Klassenattribute lassen sich in Python nicht umsetzen. Demzufolge habe ich diese
 Test dafuer verfasst und mit in die Maven-Demo gepackt. Das Aufsetzen eines Builds war fuer mich neu und ein wenig frustrierend,
 weil es schwierig fuer mich war, Fehler zu finden und zu beheben, bis es funktioniert hat. Eine weitere Herausforderung,
 deren Bewaelitgung ich als Erfolg verbuchen kann.
-
+<br>[zurueck zum Wegweiser](#wegweiser)
 ### Continuous Delivery
 Auch hier war es mein erstes Mal, eine Pipeline aufzusetzen. Erneute Frustration, wenn etwas nicht so lief wie es sollte.
 Die entstandene Pipeline ist ein minimum value product, aber das war noetig, um so priorisieren zu koennen,
 dass das Projekt eine gute Qualitaet erreicht.
-
+<br>[zurueck zum Wegweiser](#wegweiser)
 ### Unit Tests
 Nach den voherigen Punkten bin ich dankbar, dass ich mit Unit-Tests bekannten Boden betreten konnte. Ich bin ein grosser Fan
 von Tests, da sie dabei helfen, Auswirkungen von funktionalen Aenderungen bei einer Klasse direkt pruefen zu koennen und zu
@@ -324,7 +317,7 @@ mich eher dazu, Funktionen moeglichst unabhaengig zu betrachten und lieber etwas
 ich so, dass es bei einer hypothetischen Weiterentwicklung des Projekts dabei hilft, moegliche Aenderungen zu pruefen und Integritaet
 zu von Geschaeftsprozessen zu wahren. Dabei ist mir jedoch auch wichtig, dass nicht nur die Exceptions an sich fliegen, sondern
 dass diese auch wiedergeben, was denn genau das Problem ist.
-
+<br>[zurueck zum Wegweiser](#wegweiser)
 ### IDE
 #### Lieblings-Tastenkombinationen
 Alt Enter: <br>
@@ -345,7 +338,7 @@ und im Anschluss zu korrigieren. <br>
 Da ich mit PyCharm die meisten Vorerfahrungen habe, wollte ich auch das Projekt darin gestalten. Im CS for Big Data Modul hatte ich ueber das 
 Semester ersten Kontakt mit VSCode, ich hatte aber staendig Probleme und das Gefuehl, nicht wirklich damit warm zu werden.
 Dementsprechend war PyCharm in gewisser Weise auch eine zwingende Wahl.
-
+<br>[zurueck zum Wegweiser](#wegweiser)
 ### DSL Demo
 Aehnlich wie bereits zu den UML-Diagrammen erwaehnt, hat mir auch die Erstellung des Sequenzdiagramms Spass gemacht. Es gibt
 auch sehr schoen die Struktur wieder, die ein Geschaeftsprozess hat. Der erste Versuch eines Sequenzdiagramms hat mir deutlich
@@ -355,7 +348,7 @@ dies meine erste Moeglichkeit, grundlegend die Ablaeufe meiner Funktionen zu ueb
 Auch dies wuerde ich fuer kuenftige Projekte wieder nutzen, auch wenn ich nun viel mehr Erfahrung habe und dementsprechend
 mehr fuer strukturelle Konventionen sensibilisiert bin. Die Anschaulichkeit eines Geschaeftsprozesses auf diese Weise finde
 ich zur Kommunikation in einem Team persoenlich sinnvoll.
-
+<br>[zurueck zum Wegweiser](#wegweiser)
 ### Functional Programming
 Diese Aufgabe hat mir persoenlich klargemacht, wie viel es noch zu lernen gibt. Die im Projekt verwendeten Funktionalitaeten
 sind viel primitiver als die hier geforderten Aspekte. Ich habe diese Aspekte in mathematischen Kontexten umgesetzt, einfach
@@ -367,3 +360,4 @@ entsprechenden Tests bestehen, ist das funktionale Programmieren etwas, dass ich
 um eine bessere Programmiererin zu werden. <br>
 Im Maven-Projekt habe ich die Angestellten- und Chef-Klasse aus dem Projekt noch einmal auf Java umgesetzt und getestet.
 Ich habe nicht viel Erfahrung mit Java, aber es war einfach noetig, um die geforderten Konzepte umzusetzen.
+<br>[zurueck zum Wegweiser](#wegweiser)
