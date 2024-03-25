@@ -19,7 +19,7 @@ getraenkeoptionen = ["Pot Kaffee", "Tasse Kaffee", "Latte Macchiato", "Cappucino
 
 testauslage = Auslage_Tresen(auslage)
 testkaffeemaschine = Kaffeemaschine(getraenkeoptionen)
-def test_Gebaeckbestellung_erzeugen():
+def test_gebaeckbestellung_erzeugen():
     bestellung = BestellungBuilder().gebaeckoptionen(testauslage.schaue_waren_an()).backbestellung_erzeugen()
     assert bestellung != []
 

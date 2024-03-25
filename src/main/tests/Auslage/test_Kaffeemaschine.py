@@ -12,7 +12,7 @@ def test_mache_getraenk_falsches_getraenk():
         test_kaffeemaschine.mache_getraenk([("Unsinnsbruehe", 2)])
     assert str(valueerror.value) == "Diese Bestellung kann die Kaffeemaschine nicht zubereiten (falsches Getränk oder Anzahl)!"
 
-def test_mache_getraenk_leere_Bestellung():
+def test_mache_getraenk_leere_bestellung():
     with pytest.raises(ValueError) as valueerror:
         test_kaffeemaschine.mache_getraenk([])
     assert str(valueerror.value) == "Die Kaffeemaschine kann keine leere Bestellung annehmen!"
